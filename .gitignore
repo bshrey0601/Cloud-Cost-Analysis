@@ -1,0 +1,13 @@
+# raw Microsoft trace (re-downloaded by `python -m cca.warehouse`)
+data/raw/
+data/tmp/
+# databases are rebuilt locally (full) or from data/marts (lite)
+data/*.duckdb
+data/*.duckdb.wal
+data/*.tmp
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+.streamlit/secrets.toml

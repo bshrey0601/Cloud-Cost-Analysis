@@ -1,0 +1,47 @@
+total-0      correct=True  audit=True  tools=['spend_summary']
+total-1      correct=True  audit=True  tools=['spend_summary']
+total-2      correct=True  audit=True  tools=['spend_summary']
+total-3      correct=True  audit=True  tools=['spend_summary']
+total-4      correct=True  audit=True  tools=['spend_summary']
+total-5      correct=True  audit=True  tools=['spend_summary']
+davg-0       correct=True  audit=True  tools=['spend_summary']
+davg-1       correct=True  audit=True  tools=['spend_summary']
+davg-2       correct=True  audit=True  tools=['spend_summary']
+davg-3       correct=True  audit=True  tools=['spend_summary']
+davg-4       correct=True  audit=True  tools=['spend_summary']
+davg-5       correct=True  audit=True  tools=['spend_summary']
+topsub-0     correct=True  audit=True  tools=['spend_summary']
+topsub-1     correct=True  audit=True  tools=['spend_summary']
+topsub-2     correct=True  audit=True  tools=['spend_summary']
+topsub-3     correct=True  audit=True  tools=['spend_summary']
+topsub-4     correct=True  audit=True  tools=['spend_summary']
+topsub-5     correct=True  audit=True  tools=['spend_summary']
+catshare-0   correct=True  audit=True  tools=['spend_summary']
+catshare-1   correct=True  audit=True  tools=['spend_summary']
+catshare-2   correct=True  audit=True  tools=['spend_summary']
+catshare-3   correct=True  audit=True  tools=['spend_summary']
+catshare-4   correct=True  audit=True  tools=['spend_summary']
+catshare-5   correct=True  audit=True  tools=['spend_summary']
+change-0     correct=True  audit=True  tools=['compare_periods']
+change-1     correct=True  audit=True  tools=['compare_periods']
+change-2     correct=True  audit=True  tools=['compare_periods']
+change-3     correct=True  audit=True  tools=['compare_periods']
+change-4     correct=True  audit=True  tools=['compare_periods']
+change-5     correct=True  audit=True  tools=['compare_periods']
+{
+  "mode": "offline",
+  "model": null,
+  "questions": 30,
+  "accuracy": 1.0,
+  "accuracy_by_kind": {
+    "total_spend": 1.0,
+    "daily_average": 1.0,
+    "top_subscription": 1.0,
+    "category_share": 1.0,
+    "period_change": 1.0
+  },
+  "final_audit_pass_rate": 1.0,
+  "first_draft_pass_rate": null,
+  "fixed_by_revision": 0,
+  "fell_back_to_template": 0
+}

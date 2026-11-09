@@ -1,0 +1,56 @@
+{
+  "series": 50,
+  "origins": "days 15-29",
+  "horizons": {
+    "24h": {
+      "series_evaluated": 50,
+      "pooled_period_total_error": {
+        "CloudSpendForecaster (ours, self-selecting blend)": 0.013131770819270402,
+        "Holt-Winters (statsmodels)": 0.016246648265997934,
+        "Seasonal naive (same hour yesterday)": 0.016462281314202316,
+        "Naive (last value)": 0.01662249698857291,
+        "Seasonal naive (same hour last week)": 0.034319820411346166
+      },
+      "series_where_model_is_best": {
+        "Naive (last value)": 27,
+        "CloudSpendForecaster (ours, self-selecting blend)": 11,
+        "Holt-Winters (statsmodels)": 5,
+        "Seasonal naive (same hour yesterday)": 5,
+        "Seasonal naive (same hour last week)": 2
+      },
+      "share_of_series_ours_beats_or_ties_holt_winters": 0.54,
+      "median_series_error": {
+        "CloudSpendForecaster (ours, self-selecting blend)": 0.005006075299742363,
+        "Holt-Winters (statsmodels)": 0.004803501583768447,
+        "Naive (last value)": 0.004174473483976046,
+        "Seasonal naive (same hour last week)": 0.012527015503191196,
+        "Seasonal naive (same hour yesterday)": 0.005031700085176578
+      }
+    },
+    "168h": {
+      "series_evaluated": 50,
+      "pooled_period_total_error": {
+        "Seasonal naive (same hour yesterday)": 0.01966829049507441,
+        "Holt-Winters (statsmodels)": 0.021980806946005356,
+        "Naive (last value)": 0.02233542274794679,
+        "Seasonal naive (same hour last week)": 0.022762836660191712,
+        "CloudSpendForecaster (ours, self-selecting blend)": 0.027553035443536756
+      },
+      "series_where_model_is_best": {
+        "Seasonal naive (same hour yesterday)": 14,
+        "Naive (last value)": 11,
+        "CloudSpendForecaster (ours, self-selecting blend)": 11,
+        "Seasonal naive (same hour last week)": 10,
+        "Holt-Winters (statsmodels)": 4
+      },
+      "share_of_series_ours_beats_or_ties_holt_winters": 0.54,
+      "median_series_error": {
+        "CloudSpendForecaster (ours, self-selecting blend)": 0.00801031476784202,
+        "Holt-Winters (statsmodels)": 0.007510300638256067,
+        "Naive (last value)": 0.0072967523289993175,
+        "Seasonal naive (same hour last week)": 0.009350006652864505,
+        "Seasonal naive (same hour yesterday)": 0.0071385126587359
+      }
+    }
+  }
+}

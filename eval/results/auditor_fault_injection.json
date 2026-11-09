@@ -1,0 +1,72 @@
+{
+  "questions": 12,
+  "seeds": 5,
+  "by_fault": {
+    "none (clean memo)": {
+      "cases": 12,
+      "detected": 0,
+      "rate": 0.0
+    },
+    "number_drift_10pct": {
+      "cases": 55,
+      "detected": 55,
+      "rate": 1.0
+    },
+    "number_drift_50pct": {
+      "cases": 55,
+      "detected": 55,
+      "rate": 1.0
+    },
+    "unit_slip": {
+      "cases": 55,
+      "detected": 55,
+      "rate": 1.0
+    },
+    "flipped_direction": {
+      "cases": 30,
+      "detected": 30,
+      "rate": 1.0
+    },
+    "dropped_citation": {
+      "cases": 60,
+      "detected": 58,
+      "rate": 0.9666666666666667
+    },
+    "wrong_citation": {
+      "cases": 55,
+      "detected": 55,
+      "rate": 1.0
+    },
+    "fabricated_claim": {
+      "cases": 60,
+      "detected": 60,
+      "rate": 1.0
+    },
+    "ledger_tampering": {
+      "cases": 53,
+      "detected": 53,
+      "rate": 1.0
+    },
+    "number_drift_2pct": {
+      "cases": 42,
+      "detected": 42,
+      "rate": 1.0
+    }
+  },
+  "overall_detection_rate": 0.9956989247311828,
+  "false_positive_rate_on_clean": 0.0,
+  "missed_examples": [
+    {
+      "question": "Any anomalies in the Unknown category?",
+      "fault": "dropped_citation",
+      "detected": false,
+      "issue_types": []
+    },
+    {
+      "question": "Any anomalies in the Unknown category?",
+      "fault": "dropped_citation",
+      "detected": false,
+      "issue_types": []
+    }
+  ]
+}

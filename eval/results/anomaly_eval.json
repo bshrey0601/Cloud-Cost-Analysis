@@ -1,0 +1,62 @@
+{
+  "tuning_series": 25,
+  "test_series": 28,
+  "seeds": [
+    11,
+    12,
+    13
+  ],
+  "detectors": {
+    "RobustSeasonalDetector (ours)": {
+      "recall": 0.9126984126984127,
+      "precision": 0.9827339028698416,
+      "f1": 0.9461761977459601,
+      "clean_alarms_per_series_week": 0.2282608695652173,
+      "recall_by_type": {
+        "spike": 0.9642857142857143,
+        "level_shift": 0.8452380952380952,
+        "drop": 0.9285714285714285
+      },
+      "recall_by_magnitude": {
+        "<15%": 0.8286377708978329,
+        "15-30%": 0.9324434824434825,
+        ">30%": 0.9443478865406006
+      },
+      "injected_events": 252
+    },
+    "Rolling 24h z-score (k=3)": {
+      "recall": 0.9523809523809524,
+      "precision": 0.9872381999145142,
+      "f1": 0.9693785786401197,
+      "clean_alarms_per_series_week": 4.01086956521739,
+      "recall_by_type": {
+        "spike": 0.9761904761904763,
+        "level_shift": 0.9523809523809524,
+        "drop": 0.9285714285714285
+      },
+      "recall_by_magnitude": {
+        "<15%": 0.9500000000000001,
+        "15-30%": 0.9318662818662818,
+        ">30%": 0.9777530589543938
+      },
+      "injected_events": 252
+    },
+    "Static weekly threshold (mean+3sd)": {
+      "recall": 0.7817460317460317,
+      "precision": 0.9903381642512077,
+      "f1": 0.8734590230499854,
+      "clean_alarms_per_series_week": 0.9891304347826081,
+      "recall_by_type": {
+        "spike": 0.8928571428571429,
+        "level_shift": 0.7142857142857143,
+        "drop": 0.7380952380952381
+      },
+      "recall_by_magnitude": {
+        "<15%": 0.5928792569659443,
+        "15-30%": 0.7415103415103416,
+        ">30%": 0.9454254727474972
+      },
+      "injected_events": 252
+    }
+  }
+}

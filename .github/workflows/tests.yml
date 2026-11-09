@@ -1,0 +1,27 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      # Runs against the committed Parquet marts (no 440 MB download needed in CI).
+      - run: pytest -q
+      - name: Agent smoke test (offline mode, audited)
+        run: |
+          PYTHONPATH=src python -c "
+          from cca.agent import CostAnalystAgent
+          r = CostAnalystAgent().answer('Where can we save money?')
+          print(r.memo); print(r.audit.summary()); assert r.audit.passed"

@@ -1,0 +1,30 @@
+{
+  "Total": {
+    "level": 0.9,
+    "hourly_coverage": 0.9027777777777778,
+    "hourly_points": 288,
+    "daily_total_coverage": 0.9166666666666666,
+    "folds": 12
+  },
+  "Delay-insensitive": {
+    "level": 0.9,
+    "hourly_coverage": 0.9548611111111112,
+    "hourly_points": 288,
+    "daily_total_coverage": 1.0,
+    "folds": 12
+  },
+  "Interactive": {
+    "level": 0.9,
+    "hourly_coverage": 1.0,
+    "hourly_points": 288,
+    "daily_total_coverage": 1.0,
+    "folds": 12
+  },
+  "Unknown": {
+    "level": 0.9,
+    "hourly_coverage": 0.8680555555555556,
+    "hourly_points": 288,
+    "daily_total_coverage": 1.0,
+    "folds": 12
+  }
+}
