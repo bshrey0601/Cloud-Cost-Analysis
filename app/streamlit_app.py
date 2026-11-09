@@ -24,6 +24,7 @@ warnings.filterwarnings("ignore")
 from cca import anomaly as A  # noqa: E402
 from cca import forecasting as F  # noqa: E402
 from cca import optimization as O  # noqa: E402
+from cca import rootcause as RC  # noqa: E402
 from cca.agent import CostAnalystAgent  # noqa: E402
 from cca.llm import get_llm  # noqa: E402
 from cca.pricing import PRICE_SOURCE  # noqa: E402
@@ -47,6 +48,14 @@ def money(v: float) -> str:
     if a >= 1e3:
         return f"{s}${a / 1e3:,.1f}K"
     return f"{s}${a:,.0f}"
+
+
+def signed_money(v: float) -> str:
+    return f"{'-' if v < 0 else '+'}${abs(v):,.0f}"
+
+
+def plain_money(v: float) -> str:
+    return f"{'-' if v < 0 else ''}${abs(v):,.0f}"
 
 
 def style(fig: go.Figure, height: int = 360, y_title: str = "") -> go.Figure:
@@ -106,6 +115,28 @@ def cached_opt(commit_discount: float = 0.0, spot_discount: float = 0.0) -> dict
         con.close()
 
 
+@st.cache_data(show_spinner=False)
+def cached_explain(sub: str, bs: int, be: int, cs: int, ce: int) -> dict:
+    con = connect()
+    try:
+        return RC.explain_change(con, sub, bs, be, cs, ce, top_n=5)
+    finally:
+        con.close()
+
+
+@st.cache_data(show_spinner="Building the QBR pack (audited) ...")
+def cached_qbr() -> dict:
+    from cca.qbr import build_qbr
+    from cca.qbr_pptx import build_pptx
+    con = connect()
+    try:
+        d = build_qbr(con, str(active_db_path()))
+    finally:
+        con.close()
+    return {"total": d.total, "commentary": d.commentary, "audit": d.audit.summary(),
+            "team_drivers": d.team_drivers, "pptx": build_pptx(d)}
+
+
 def load_json(name: str):
     p = RESULTS / name
     return json.loads(p.read_text()) if p.exists() else None
@@ -137,7 +168,7 @@ st.title("Cloud Cost Analyst")
 st.caption("Microsoft Azure Public Dataset V2 — 30 days of Microsoft's own (first-party) Azure VM usage, "
            f"2.7M VMs across 6,687 internal subscriptions · {PRICE_SOURCE}")
 
-tabs = st.tabs(["Overview", "Forecast", "Anomalies", "Optimization", "Ask the Analyst", "Model Validation"])
+tabs = st.tabs(["Overview", "Forecast", "Anomalies", "Optimization", "QBR Pack", "Ask the Analyst", "Model Validation"])
 
 # ------------------------------------------------------------- overview
 with tabs[0]:
@@ -225,7 +256,7 @@ with tabs[2]:
                  .rename(columns={"series": "Subscription", "direction": "Type", "pattern": "Pattern", "window": "When",
                                   "excess_cost_usd": "Excess vs expected", "pct_vs_expected": "Deviation",
                                   "peak_z": "Peak robust z"})
-                 .style.format({"Excess vs expected": "${:,.0f}", "Deviation": "{:+.1%}", "Peak robust z": "{:,.1f}"}),
+                 .style.format({"Excess vs expected": signed_money, "Deviation": "{:+.1%}", "Peak robust z": "{:,.1f}"}),
                  width="stretch", height=260)
     pick = st.selectbox("Inspect a subscription", list(dict.fromkeys(ev.series.tolist() + sorted(scores))))
     sc = scores[pick]
@@ -244,6 +275,51 @@ with tabs[2]:
     fig.update_layout(title=f"{pick}: hourly spend vs. expected", hovermode="x unified")
     fig.update_xaxes(title="Trace day")
     st.plotly_chart(style(fig, 380, "USD per hour"), width="stretch")
+
+    # ---- root cause: which deployment caused it?
+    st.markdown("#### Root cause — which deployment changed?")
+    sub_events = ev[ev.series == pick]
+    if sub_events.empty:
+        st.caption("No anomaly events for this subscription; showing the change between the two halves of the month.")
+        rc = cached_explain(pick, 1, 15, 16, 30)
+    else:
+        labels = [f"day {r.start_hour // 24 + 1}: {r.direction} ({r.pattern})" for r in sub_events.itertuples()]
+        choice = st.selectbox("Event", labels)
+        day = int(sub_events.iloc[labels.index(choice)].start_hour) // 24 + 1
+        w = RC.event_windows(day)
+        rc = cached_explain(pick, *w) if w else None
+        if w is None:
+            st.caption("This event starts on day 1, so there is no earlier baseline to compare with.")
+    if rc:
+        b, c = rc["base_days"], rc["comp_days"]
+        c1, c2, c3 = st.columns(3)
+        c1.metric(f"Daily spend, days {b[0]}-{b[1]}", money(rc["base_daily_avg_usd"]))
+        c2.metric(f"Daily spend, days {c[0]}-{c[1]}", money(rc["comp_daily_avg_usd"]),
+                  money(rc["change_usd_per_day"]) + " per day", delta_color="off")
+        c3.metric("Explained by top deployment", f"{rc['top_driver_share_of_gross_change']:.0%}")
+        drv = pd.DataFrame(rc["drivers"])
+        if not drv.empty:
+            fig = go.Figure(go.Bar(
+                x=drv.change_usd_per_day, y=drv.name, orientation="h",
+                marker=dict(color=[BLUE if v >= 0 else "#eb6834" for v in drv.change_usd_per_day], cornerradius=4),
+                text=[f"{money(v)}/day · {k}" for v, k in zip(drv.change_usd_per_day, drv.kind)],
+                textposition="outside", textfont=dict(color=MUTED),
+                hovertemplate="%{y}<br>%{x:$,.0f} per day<extra></extra>"))
+            span = max(abs(drv.change_usd_per_day).max(), 1)
+            fig.update_layout(title="Change in daily spend by deployment")
+            lo, hi = drv.change_usd_per_day.min(), drv.change_usd_per_day.max()
+            fig.update_xaxes(tickprefix="$", range=[lo - span * 0.6 if lo < 0 else 0, hi + span * 0.6 if hi > 0 else 0])
+            fig.update_yaxes(autorange="reversed", gridcolor="rgba(0,0,0,0)")
+            st.plotly_chart(style(fig, 90 + 60 * len(drv)), width="stretch")
+            st.dataframe(hide_index=True, data=drv[["name", "kind", "first_day", "last_day", "vm_count", "sku", "category",
+                                                     "change_usd_per_day", "share_of_change"]]
+                         .rename(columns={"name": "Deployment", "kind": "What happened", "first_day": "First day",
+                                          "last_day": "Last day", "vm_count": "VMs", "sku": "Main VM type",
+                                          "category": "Workload", "change_usd_per_day": "Change per day",
+                                          "share_of_change": "Share of net change"})
+                         .style.format({"Change per day": signed_money, "Share of net change": "{:.0%}"}), width="stretch")
+        for m in rc.get("possible_migrations", []):
+            st.info(f"Possible migration: spend moved from **{m['from']}** to **{m['to']}** — confirm with the owner.")
 
 # ----------------------------------------------------------- optimization
 with tabs[3]:
@@ -274,8 +350,33 @@ with tabs[3]:
     fig.update_yaxes(autorange="reversed", gridcolor="rgba(0,0,0,0)")
     st.plotly_chart(style(fig, 480), width="stretch")
 
-# --------------------------------------------------------- ask the analyst
+# --------------------------------------------------------------- QBR pack
 with tabs[4]:
+    st.markdown("A complete **cost review pack** for days 15–30: budget vs. actual, variance by team with the "
+                "deployment behind each one, anomalies, savings and the 7-day outlook. The executive commentary is "
+                "checked by the Auditor before the deck is built; charts are native and editable in PowerPoint.")
+    qd = cached_qbr()
+    t = qd["total"]
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Actual spend, days 15–30", money(t["actual_usd"]))
+    c2.metric("Run-rate budget", money(t["budget_usd"]))
+    c3.metric("Variance vs budget", money(t["variance_usd"]), f"{t['variance_pct']:+.1%}", delta_color="inverse")
+    c4.metric("Unbudgeted spend", money(t["unbudgeted_usd"]))
+    st.markdown(f"**Audited commentary** — {qd['audit']}")
+    for line in qd["commentary"]:
+        st.markdown(f"- {line}")
+    st.dataframe(hide_index=True, data=pd.DataFrame(qd["team_drivers"])[
+        ["team", "budget_usd", "actual_usd", "variance_usd", "top_deployment", "what_happened", "deployment_share"]]
+        .rename(columns={"team": "Team", "budget_usd": "Budget", "actual_usd": "Actual", "variance_usd": "Variance",
+                         "top_deployment": "Top deployment", "what_happened": "What happened",
+                         "deployment_share": "Share of movement"})
+        .style.format({"Budget": "${:,.0f}", "Actual": "${:,.0f}", "Variance": signed_money, "Share of movement": "{:.0%}"}),
+        width="stretch")
+    st.download_button("Download the QBR deck (.pptx)", data=qd["pptx"], file_name="cloud_cost_review.pptx",
+                       mime="application/vnd.openxmlformats-officedocument.presentationml.presentation", type="primary")
+
+# --------------------------------------------------------- ask the analyst
+with tabs[5]:
     llm = get_llm()
     mode = f"{llm.name} ({getattr(llm, 'model', '')})" if llm else "offline (rule planner + template writer)"
     st.markdown(f"**Agent mode:** {mode}. Set `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` to enable the LLM planner "
@@ -304,7 +405,7 @@ with tabs[4]:
             st.json(res.steps)
 
 # ------------------------------------------------------- model validation
-with tabs[5]:
+with tabs[6]:
     st.subheader("Data reconciliation")
     st.dataframe(hide_index=True, data=q("SELECT * FROM dq_reconciliation"), width="stretch")
 

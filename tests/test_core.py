@@ -8,6 +8,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import duckdb
 import numpy as np
 import pytest
 
@@ -164,3 +165,119 @@ def test_llm_loop_revises_then_passes_with_scripted_model():
     res = agent.answer("Where can we save money?")
     assert not res.first_draft_audit.passed
     assert res.audit.passed and res.revisions == 1 and not res.fell_back
+
+
+# ------------------------------------------------------------- root cause
+def _toy_rootcause_db():
+    """One team, four deployments: one launched, one shut down, one migrated, one unchanged."""
+    import duckdb
+    con = duckdb.connect()
+    con.execute("""CREATE TABLE dim_deployment AS SELECT * FROM (VALUES
+        ('DEP-1', 'SUB-T', 10, 8, 30, 'Interactive', 'Standard_D2s_v5'),
+        ('DEP-2', 'SUB-T', 5, 1, 7, 'Unknown', 'Standard_D2s_v5'),
+        ('DEP-3', 'SUB-T', 20, 1, 30, 'Interactive', 'custom_2vcpu_2gb'),
+        ('DEP-4', 'SUB-T', 4, 1, 30, 'Interactive', 'Standard_D2s_v5'))
+        t(deployment_alias, subscription_alias, vm_count, first_day, last_day, primary_category, primary_sku)""")
+    rows = []
+    for d in range(1, 31):
+        if d >= 8:
+            rows.append((d, "DEP-1", "SUB-T", 500.0, 0, 10 if d == 8 else 0))
+        if d <= 7:
+            rows.append((d, "DEP-2", "SUB-T", 200.0, 0, 0))
+        rows.append((d, "DEP-3", "SUB-T", 300.0 if d <= 7 else 50.0, 0, 0))
+        rows.append((d, "DEP-4", "SUB-T", 100.0, 0, 0))
+    con.execute("CREATE TABLE mart_daily_deployment (trace_day INT, deployment_alias VARCHAR, subscription_alias VARCHAR,"
+                " cost_usd DOUBLE, vm_hours DOUBLE, vms_created INT)")
+    con.executemany("INSERT INTO mart_daily_deployment VALUES (?, ?, ?, ?, ?, ?)", rows)
+    con.execute("ALTER TABLE mart_daily_deployment ADD COLUMN active_vms INT DEFAULT 0")
+    return con
+
+
+def test_root_cause_decomposes_exactly_and_classifies_drivers():
+    from cca.rootcause import explain_change
+    r = explain_change(_toy_rootcause_db(), "SUB-T", 1, 7, 8, 14, top_n=10)
+    kinds = {d["name"]: d["kind"] for d in r["drivers"]}
+    assert kinds == {"DEP-1": "launched", "DEP-3": "scaled down", "DEP-2": "shut down"}   # DEP-4 did not move
+    assert r["change_usd_per_day"] == pytest.approx(500 - 200 - 250)
+    assert sum(d["change_usd_per_day"] for d in r["drivers"]) == pytest.approx(r["change_usd_per_day"])
+    assert r["drivers"][0]["vms_created_in_comparison"] == 10
+    assert r["drivers"][[d["name"] for d in r["drivers"]].index("DEP-3")]["sku"] == "2 vCPU / 2 GB VMs"
+
+
+def test_root_cause_flags_a_migration():
+    from cca.rootcause import explain_change
+    con = _toy_rootcause_db()
+    con.execute("DELETE FROM mart_daily_deployment WHERE deployment_alias = 'DEP-2'")
+    r = explain_change(con, "SUB-T", 1, 7, 8, 14, top_n=10)
+    # DEP-3 lost 250/day and DEP-1 gained 500/day: not similar enough to call a migration
+    assert r["possible_migrations"] == []
+    con.execute("UPDATE mart_daily_deployment SET cost_usd = 270 WHERE deployment_alias = 'DEP-1'")
+    r = explain_change(con, "SUB-T", 1, 7, 8, 14, top_n=10)
+    assert r["possible_migrations"] == [{"from": "DEP-3", "to": "DEP-1", "from_change_usd_per_day": -250.0,
+                                         "to_change_usd_per_day": 270.0}]
+
+
+def test_auditor_treats_deployment_ids_as_identifiers():
+    assert [n.text for n in _parse("DEP-00034 launched 1,934 VMs")] == ["1,934"]
+
+
+@needs_db
+def test_agent_root_cause_memo_passes_audit():
+    from cca.agent import CostAnalystAgent
+    res = CostAnalystAgent(llm=None).answer("Why did SUB-0041 spend jump on day 8?")
+    assert [s["tool"] for s in res.steps] == ["explain_change"]
+    assert res.audit.passed and "DEP-" in res.memo
+
+
+# ------------------------------------------------------------------- QBR pack
+@needs_db
+def test_qbr_budget_arithmetic_and_audited_deck():
+    import io
+
+    from pptx import Presentation
+
+    from cca.qbr import PERIOD_END, PERIOD_START, PLAN_END, PLAN_START, budget_vs_actual, build_qbr
+    from cca.qbr_pptx import build_pptx
+    con = duckdb.connect(str(active_db_path()), read_only=True)
+    teams = budget_vs_actual(con)
+    plan = con.execute("SELECT SUM(cost_usd) FROM mart_daily_driver WHERE trace_day BETWEEN ? AND ?",
+                       [PLAN_START, PLAN_END]).fetchone()[0]
+    days_plan, days_period = PLAN_END - PLAN_START + 1, PERIOD_END - PERIOD_START + 1
+    assert teams.budget_usd.sum() == pytest.approx(plan / days_plan * days_period)
+    d = build_qbr(con, str(active_db_path()))
+    assert d.audit.passed and d.audit.facts_reconciled > 0
+    assert all("[F" not in line for line in d.commentary)           # citations stripped for executives
+    prs = Presentation(io.BytesIO(build_pptx(d)))
+    assert len(prs.slides) == 9
+    charts = [sh for sl in prs.slides for sh in sl.shapes if sh.has_chart]
+    assert len(charts) == 4                                          # native, editable charts
+
+
+def test_team_week_ahead_routes_to_validated_baseline():
+    assert F.choose_model("SUB-0041", 168) == "seasonal_naive_day"
+    assert F.choose_model("SUB-0041", 24) == "blend"
+    assert F.choose_model("total", 168) == "blend"
+    assert F.CloudSpendForecaster().step_aware is False       # v2 experiment stays off by default
+
+
+def test_auditor_binds_each_number_to_its_own_citation():
+    """Regression: with a $0 base, comparison and change are equal; a swapped citation must still fail."""
+    led = Ledger()
+    led.post("Base", 0.0, "usd", "x", {}, "k")
+    led.post("Comparison", 4100.0, "usd", "x", {}, "k")
+    led.post("Change in spend", 4100.0, "usd", "x", {}, "k")
+    good = "Spend rose from $0.00 [F1] to $4.1K [F2], a move of $4.1K [F3]."
+    swapped = "Spend rose from $0.00 [F1] to $4.1K [F1], a move of $4.1K [F3]."
+    dropped = "Spend rose from $0.00 [F1] to $4.1K [F2], a move of $4.1K."
+    assert audit(good, led).passed
+    assert not audit(swapped, led).passed
+    assert not audit(dropped, led).passed
+
+
+def test_auditor_checks_the_cited_fact_is_about_the_named_entity():
+    led = Ledger()
+    led.post("Change in SUB-0010 daily avg spend (comparison - base)", 1312.6, "usd", "x", {}, "k")
+    led.post("Change in daily avg spend from DEP-00098 (scaled up)", 1271.7, "usd", "x", {}, "k")
+    assert audit("DEP-00098 scaled up, adding $1.3K [F2] per day.", led).passed
+    rep = audit("DEP-00098 scaled up, adding $1.3K [F1] per day.", led)   # same rounding, wrong entity
+    assert not rep.passed and "citation_entity" in {i["type"] for i in rep.issues}

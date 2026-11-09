@@ -2,10 +2,11 @@
 
 It never trusts the writer. For each sentence it:
   1. finds every number (dollars, percentages, counts, hours);
-  2. requires a fact citation [F#] in the same sentence;
+  2. requires its own fact citation [F#] immediately after it;
   3. checks the number is a correct *rounding* of one of the cited facts
      (tolerance = half a unit of the last digit shown, e.g. "$1.2M" must be within $0.05M);
-  4. checks direction words (increase / decrease) agree with the sign of cited change facts;
+  4. checks direction words (increase / decrease) agree with the sign of cited change facts,
+     and that a fact about a named team/deployment is cited only where that entity is named;
 and then 5. re-runs every cited fact's tool on a fresh read-only connection and
 reconciles the value -- exactly like tying a report back to the source system.
 
@@ -30,6 +31,8 @@ NUM_RE = re.compile(
     r"\s?(?P<suffix>%|[KMB](?![a-z])|k(?![a-z])|thousand|million|billion)?(?P<hours>\s?(?:h\b|hours?\b|hrs?\b))?"
 )
 CITE_RE = re.compile(r"\[(F\d+(?:\s*,\s*F\d+)*)\]")
+ENTITY_RE = re.compile(r"\b(?:SUB|DEP)-\d+")
+OWN_CITE_RE = re.compile(r"\s*\[(F\d+(?:\s*,\s*F\d+)*)\]")
 UP_WORDS = re.compile(r"\b(add(?:ed|s)?|increase[sd]?|rising|rose|rise[sn]?|grew|grow(?:th|s)?|higher|up|spike[sd]?|above|over expected|jump(?:ed)?)\b", re.I)
 DOWN_WORDS = re.compile(r"\b(remov(?:ed|es?)|falling|decrease[sd]?|fell|fall(?:s|en)?|drop(?:ped|s)?|declin\w*|lower|down|below|shr[ai]nk\w*|reduc\w*)\b", re.I)
 SCALE = {"K": 1e3, "k": 1e3, "thousand": 1e3, "M": 1e6, "million": 1e6, "B": 1e9, "billion": 1e9}
@@ -42,6 +45,7 @@ class NumberMention:
     kind: str             # usd | pct | count | hours
     tolerance: float
     start: int
+    end: int = 0
 
 
 @dataclass
@@ -70,14 +74,24 @@ def _sentences(text: str) -> list[str]:
     return out
 
 
+def _sentences_in_lines(text: str) -> list[tuple[str, str]]:
+    """(line, sentence) pairs: a line is a paragraph or a bullet."""
+    out = []
+    for line in text.splitlines():
+        line = line.strip()
+        if line:
+            out += [(line, s) for s in re.split(r"(?<=[.!?;])\s+", line) if s.strip()]
+    return out
+
+
 def _skip(sentence: str, m: re.Match) -> bool:
     """Numbers that are references rather than claims: day numbers, IDs, ranks, confidence levels."""
     s, e = m.start("num"), m.end()
     before = sentence[max(0, s - 12): s].lower()
     after = sentence[e: e + 14].lower()
     raw = m.group(0)
-    if re.search(r"(sub-|f)$", before):
-        return True                                   # SUB-0007, F12
+    if re.search(r"(\b[a-z]{2,5}-|f)$", before):
+        return True                                   # identifiers: SUB-0007, DEP-00034, F12
     if not m.group("suffix") and not m.group("hours") and re.match(r"[A-Za-z_]", sentence[m.end("num"):m.end("num") + 1]):
         return True                                   # identifiers such as VM shape "24c_64g"
     if not m.group("dollar") and not m.group("suffix") and re.match(r"\s*(?:-\s*)?days?\b", after) \
@@ -126,7 +140,7 @@ def _parse(sentence: str) -> list[NumberMention]:
         else:
             sc = SCALE.get(suffix or "", 1.0)
             kind, value, tol = "count", val * sc, unit_tol * sc
-        out.append(NumberMention(m.group(0).strip(), value, kind, tol + 1e-9, m.start()))
+        out.append(NumberMention(m.group(0).strip(), value, kind, tol + 1e-9, m.start(), m.end()))
     return out
 
 
@@ -218,7 +232,7 @@ def audit(memo: str, ledger: Ledger, db_path: str | None = None) -> AuditReport:
     issues: list[dict] = []
     checked = 0
     cited_all: set[str] = set()
-    for sent in _sentences(memo):
+    for line, sent in _sentences_in_lines(memo):
         cites = {c.strip() for grp in CITE_RE.findall(sent) for c in grp.split(",")}
         cited_all |= cites
         for c in cites:
@@ -226,12 +240,23 @@ def audit(memo: str, ledger: Ledger, db_path: str | None = None) -> AuditReport:
                 issues.append({"type": "unknown_citation", "sentence": sent, "detail": f"{c} is not in the fact ledger"})
         clean = CITE_RE.sub("", sent)
         issues += _check_from_to(clean, sent)
-        for nm in _parse(clean):
+        # Bind each number to the citation written IMMEDIATELY after it ("$4.1K [F2]"). Binding to
+        # any citation in the sentence lets a swapped or dropped citation hide behind another fact
+        # with the same value (e.g. when a base is $0, the comparison and the change are equal).
+        raw_nums, clean_nums = _parse(sent), _parse(clean)
+        bound = len(raw_nums) == len(clean_nums)
+        for k, nm in enumerate(clean_nums):
             checked += 1
-            facts = [ledger.facts[c] for c in cites if c in ledger.facts]
+            if bound:
+                m = OWN_CITE_RE.match(sent[raw_nums[k].end:])
+                own = [c.strip() for c in m.group(1).split(",")] if m else []
+            else:  # defensive fallback: sentence-level binding
+                own = sorted(cites)
+            facts = [ledger.facts[c] for c in own if c in ledger.facts]
             if not facts:
                 issues.append({"type": "uncited_number", "sentence": sent, "number": nm.text,
-                               "detail": f"'{nm.text}' has no fact citation in: \"{sent[:140]}\""})
+                               "detail": f"'{nm.text}' is not immediately followed by its own [F#] citation in: "
+                                         f"\"{sent[:140]}\""})
                 continue
             match = None
             for f in facts:
@@ -241,6 +266,18 @@ def audit(memo: str, ledger: Ledger, db_path: str | None = None) -> AuditReport:
                 if abs(nm.value - fv) <= nm.tolerance:
                     match = f
                     break
+            if match is not None:
+                # Entity check: a fact about a specific team or deployment can only support a
+                # sentence that names it. Rounding cannot separate "$1.3K" for DEP-00098 from
+                # "$1.3K" for SUB-0010's total; the entity can.
+                # Scope = the paragraph/bullet, so "SUB-0041 rose ... The top deployment explains 99%
+                # of its change" is fine, while a bullet about DEP-00098 citing SUB-0010's total is not.
+                ents = ENTITY_RE.findall(match.label)
+                if ents and not any(e in line for e in ents):
+                    issues.append({"type": "citation_entity", "sentence": sent, "number": nm.text,
+                                   "detail": f"'{nm.text}' cites {match.id}, a fact about {', '.join(ents)}, "
+                                             f"which this paragraph does not mention"})
+                    continue
             if match is None:
                 shown = ", ".join(f"{f.id}={f.display()}" for f in facts)
                 issues.append({"type": "value_mismatch", "sentence": sent, "number": nm.text,

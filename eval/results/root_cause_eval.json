@@ -1,0 +1,95 @@
+{
+  "events_explained": 34,
+  "share_with_one_deployment_explaining_majority": 0.5588235294117647,
+  "median_top_driver_share": 0.5169128773739475,
+  "kinds_of_top_driver": {
+    "launched": 15,
+    "scaled up": 10,
+    "scaled down": 8,
+    "shut down": 1
+  },
+  "examples": [
+    {
+      "series": "SUB-0041",
+      "start_day": 8,
+      "top_driver": "DEP-00034",
+      "top_kind": "launched",
+      "top_share": 0.9911356576708453,
+      "deployments_changed": 2
+    },
+    {
+      "series": "SUB-0034",
+      "start_day": 20,
+      "top_driver": "DEP-02034",
+      "top_kind": "scaled up",
+      "top_share": 0.9147957841579446,
+      "deployments_changed": 13
+    },
+    {
+      "series": "SUB-0046",
+      "start_day": 14,
+      "top_driver": "DEP-00042",
+      "top_kind": "scaled down",
+      "top_share": 0.8794400970740683,
+      "deployments_changed": 12
+    },
+    {
+      "series": "SUB-0039",
+      "start_day": 30,
+      "top_driver": "DEP-02488",
+      "top_kind": "scaled up",
+      "top_share": 0.8652724455454335,
+      "deployments_changed": 4
+    },
+    {
+      "series": "SUB-0041",
+      "start_day": 20,
+      "top_driver": "DEP-00034",
+      "top_kind": "scaled down",
+      "top_share": 0.8589749136889193,
+      "deployments_changed": 2
+    },
+    {
+      "series": "SUB-0034",
+      "start_day": 22,
+      "top_driver": "DEP-02034",
+      "top_kind": "scaled down",
+      "top_share": 0.7897697663345894,
+      "deployments_changed": 12
+    },
+    {
+      "series": "SUB-0014",
+      "start_day": 19,
+      "top_driver": "DEP-03529",
+      "top_kind": "launched",
+      "top_share": 0.7713620139382822,
+      "deployments_changed": 13
+    },
+    {
+      "series": "SUB-0046",
+      "start_day": 28,
+      "top_driver": "DEP-00042",
+      "top_kind": "scaled down",
+      "top_share": 0.6663925403970228,
+      "deployments_changed": 12
+    },
+    {
+      "series": "SUB-0026",
+      "start_day": 13,
+      "top_driver": "DEP-00028",
+      "top_kind": "scaled down",
+      "top_share": 0.6634889689478805,
+      "deployments_changed": 9
+    },
+    {
+      "series": "SUB-0039",
+      "start_day": 29,
+      "top_driver": "DEP-02488",
+      "top_kind": "launched",
+      "top_share": 0.6030628122184917,
+      "deployments_changed": 4
+    }
+  ],
+  "anomaly_events": 34,
+  "max_decomposition_error_usd_per_day": 9.094947017729282e-13
+}

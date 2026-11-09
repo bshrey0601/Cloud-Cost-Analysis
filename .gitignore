@@ -1,5 +1,5 @@
 # raw Microsoft trace (re-downloaded by `python -m cca.warehouse`)
-data/raw/
+data/raw
 data/tmp/
 # databases are rebuilt locally (full) or from data/marts (lite)
 data/*.duckdb

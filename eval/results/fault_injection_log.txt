@@ -1,11 +1,11 @@
-none (clean memo)         0/12   = 0.0%
-number_drift_10pct       55/55   = 100.0%
-number_drift_50pct       55/55   = 100.0%
-unit_slip                55/55   = 100.0%
+none (clean memo)         0/14   = 0.0%
+number_drift_10pct       65/65   = 100.0%
+number_drift_50pct       65/65   = 100.0%
+unit_slip                65/65   = 100.0%
 flipped_direction        30/30   = 100.0%
-dropped_citation         58/60   = 96.7%
-wrong_citation           55/55   = 100.0%
-fabricated_claim         60/60   = 100.0%
-ledger_tampering         53/53   = 100.0%
-number_drift_2pct        42/42   = 100.0%
-overall detection 99.6%, false positives on clean memos 0.0%
+dropped_citation         68/70   = 97.1%
+wrong_citation           63/65   = 96.9%
+fabricated_claim         70/70   = 100.0%
+ledger_tampering         52/52   = 100.0%
+number_drift_2pct        49/49   = 100.0%
+overall detection 99.2%, false positives on clean memos 0.0%

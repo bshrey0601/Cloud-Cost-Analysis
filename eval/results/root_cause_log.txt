@@ -1,0 +1,13 @@
+{
+  "events_explained": 34,
+  "share_with_one_deployment_explaining_majority": 0.5588235294117647,
+  "median_top_driver_share": 0.5169128773739475,
+  "kinds_of_top_driver": {
+    "launched": 15,
+    "scaled up": 10,
+    "scaled down": 8,
+    "shut down": 1
+  },
+  "anomaly_events": 34,
+  "max_decomposition_error_usd_per_day": 9.094947017729282e-13
+}

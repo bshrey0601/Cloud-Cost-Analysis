@@ -1,0 +1,178 @@
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+TEST half (25 teams, never used for design choices) -- error on the period total, %
+horizon                               next_day  next_week
+model                                                    
+Seasonal naive (same hour yesterday)     1.803      2.190
+Naive (last value)                       1.551      2.472
+Holt-Winters (statsmodels)               1.605      2.514
+v2 step-aware (threshold 15%)            1.780      3.546
+v1 blend (no step awareness)             1.529      4.474
+
+Regression check -- Total
+horizon                               next_day  next_week
+model                                                    
+Holt-Winters (statsmodels)               1.043      2.058
+Naive (last value)                       1.270      2.142
+Seasonal naive (same hour yesterday)     1.092      1.513
+v1 blend (no step awareness)             0.869      0.911
+v2 step-aware (threshold 15%)            0.840      0.903
+
+Regression check -- Delay-insensitive
+horizon                               next_day  next_week
+model                                                    
+Holt-Winters (statsmodels)               0.155      0.630
+Naive (last value)                       0.182      0.658
+Seasonal naive (same hour yesterday)     0.415      0.675
+v1 blend (no step awareness)             0.253      0.724
+v2 step-aware (threshold 15%)            0.252      0.670
+
+Regression check -- Interactive
+horizon                               next_day  next_week
+model                                                    
+Holt-Winters (statsmodels)               0.115      0.698
+Naive (last value)                       0.158      0.664
+Seasonal naive (same hour yesterday)     0.313      0.628
+v1 blend (no step awareness)             0.109      0.586
+v2 step-aware (threshold 15%)            0.134      0.663
+
+Regression check -- Unknown
+horizon                               next_day  next_week
+model                                                    
+Holt-Winters (statsmodels)               9.998     21.497
+Naive (last value)                      12.000     20.745
+Seasonal naive (same hour yesterday)    11.655     17.321
+v1 blend (no step awareness)            10.575      8.158
+v2 step-aware (threshold 15%)           10.385     10.251

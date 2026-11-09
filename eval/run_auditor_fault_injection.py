@@ -48,6 +48,8 @@ QUESTIONS = [
     "Which subscriptions spent the most in days 10-20?",
     "Top VM shapes by spend over the last 10 days",
     "How much did we spend in days 21-30?",
+    "Why did SUB-0041 spend jump on day 8?",
+    "What changed in SUB-0010 between days 11-13 and days 14-16?",
 ]
 
 MONEY_RE = re.compile(r"(?<![\w.])\$(\d{1,3}(?:,\d{3})*(?:\.\d+)?)([KM])")

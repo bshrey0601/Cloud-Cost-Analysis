@@ -8,3 +8,4 @@ streamlit==1.67.0
 plotly==7.1.0
 google-genai==3.0.0      # optional: Gemini planner/writer
 anthropic==2.6.0         # optional: Claude planner/writer
+python-pptx==1.0.2

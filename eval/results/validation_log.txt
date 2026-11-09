@@ -83,56 +83,54 @@ Forecasting backtest ...
   res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
 /usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
   res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
-/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
-  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
-/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
-  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
-/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
-  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
-/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
-  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
-/usr/local/lib/python3.13/site-packages/statsmodels/tsa/holtwinters/model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
-  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
 horizon 24h  hourly WAPE %
-series                                             Delay-insensitive  Interactive  Total  Unknown
-model                                                                                            
-CloudSpendForecaster (ours, self-selecting blend)              0.269        0.128  1.089   11.867
-Holt-Winters (statsmodels)                                     0.175        0.135  1.162   12.045
-Naive (last value)                                             0.197        0.170  1.489   14.931
-ProfileDampedTrend (ours)                                      0.252        0.128  1.421   14.016
-Seasonal naive (same hour last week)                           1.322        1.197  1.207   16.447
-Seasonal naive (same hour yesterday)                           0.444        0.340  1.316   13.790
-SeasonalRidge (ours)                                           0.791        0.596  1.069   13.600
+series                                              Delay-insensitive  Interactive  Total  Unknown
+model                                                                                             
+CloudSpendForecaster (ours, self-selecting blend)               0.269        0.128  1.089   11.867
+CloudSpendForecaster v2 (step-aware, experimental)              0.266        0.153  1.055   11.602
+Holt-Winters (statsmodels)                                      0.175        0.136  1.172   12.150
+Naive (last value)                                              0.197        0.170  1.489   14.931
+ProfileDampedTrend (ours)                                       0.252        0.128  1.421   14.016
+RecentLevel (ours, component)                                   0.460        0.351  1.171   12.284
+Seasonal naive (same hour last week)                            1.322        1.197  1.207   16.447
+Seasonal naive (same hour yesterday)                            0.444        0.340  1.316   13.790
+SeasonalRidge (ours)                                            0.791        0.596  1.069   13.600
 horizon 24h  period-total MAPE %
-series                                             Delay-insensitive  Interactive  Total  Unknown
-model                                                                                            
-CloudSpendForecaster (ours, self-selecting blend)              0.254        0.109  0.864   10.434
-Holt-Winters (statsmodels)                                     0.156        0.114  1.033   10.470
-Naive (last value)                                             0.185        0.158  1.268   12.607
-ProfileDampedTrend (ours)                                      0.237        0.109  1.372   12.723
-Seasonal naive (same hour last week)                           1.267        1.184  1.013   15.189
-Seasonal naive (same hour yesterday)                           0.422        0.316  1.089   11.709
-SeasonalRidge (ours)                                           0.782        0.584  0.821   12.550
+series                                              Delay-insensitive  Interactive  Total  Unknown
+model                                                                                             
+CloudSpendForecaster (ours, self-selecting blend)               0.254        0.109  0.864   10.434
+CloudSpendForecaster v2 (step-aware, experimental)              0.254        0.134  0.835   10.398
+Holt-Winters (statsmodels)                                      0.156        0.115  1.042   10.519
+Naive (last value)                                              0.185        0.158  1.268   12.607
+ProfileDampedTrend (ours)                                       0.237        0.109  1.372   12.723
+RecentLevel (ours, component)                                   0.447        0.337  1.010   10.877
+Seasonal naive (same hour last week)                            1.267        1.184  1.013   15.189
+Seasonal naive (same hour yesterday)                            0.422        0.316  1.089   11.709
+SeasonalRidge (ours)                                            0.782        0.584  0.821   12.550
 horizon 168h  hourly WAPE %
-series                                             Delay-insensitive  Interactive  Total  Unknown
-model                                                                                            
-CloudSpendForecaster (ours, self-selecting blend)              0.780        0.746  1.448   16.127
-Holt-Winters (statsmodels)                                     0.727        0.724  2.293   27.155
-Naive (last value)                                             0.719        0.703  2.423   27.758
-ProfileDampedTrend (ours)                                      0.777        0.730  2.278   30.017
-Seasonal naive (same hour last week)                           0.774        0.885  1.288   14.693
-Seasonal naive (same hour yesterday)                           0.748        0.718  2.022   24.294
-SeasonalRidge (ours)                                           1.387        0.874  1.678   19.423
+series                                              Delay-insensitive  Interactive  Total  Unknown
+model                                                                                             
+CloudSpendForecaster (ours, self-selecting blend)               0.780        0.746  1.448   16.127
+CloudSpendForecaster v2 (step-aware, experimental)              0.750        0.765  1.451   17.174
+Holt-Winters (statsmodels)                                      0.727        0.722  2.292   27.191
+Naive (last value)                                              0.719        0.703  2.423   27.758
+ProfileDampedTrend (ours)                                       0.777        0.730  2.278   30.017
+RecentLevel (ours, component)                                   0.744        0.722  1.766   21.620
+Seasonal naive (same hour last week)                            0.774        0.885  1.288   14.693
+Seasonal naive (same hour yesterday)                            0.748        0.718  2.022   24.294
+SeasonalRidge (ours)                                            1.387        0.874  1.678   19.423
 horizon 168h  period-total MAPE %
-series                                             Delay-insensitive  Interactive  Total  Unknown
-model                                                                                            
-CloudSpendForecaster (ours, self-selecting blend)              0.731        0.589  0.910    8.140
-Holt-Winters (statsmodels)                                     0.637        0.702  2.060   21.527
-Naive (last value)                                             0.664        0.666  2.142   21.016
-ProfileDampedTrend (ours)                                      0.736        0.708  1.941   25.949
-Seasonal naive (same hour last week)                           0.702        0.598  0.639    6.541
-Seasonal naive (same hour yesterday)                           0.682        0.630  1.512   17.299
-SeasonalRidge (ours)                                           1.330        0.675  1.451   13.621
+series                                              Delay-insensitive  Interactive  Total  Unknown
+model                                                                                             
+CloudSpendForecaster (ours, self-selecting blend)               0.731        0.589  0.910    8.140
+CloudSpendForecaster v2 (step-aware, experimental)              0.676        0.665  0.902   10.009
+Holt-Winters (statsmodels)                                      0.637        0.700  2.057   21.566
+Naive (last value)                                              0.664        0.666  2.142   21.016
+ProfileDampedTrend (ours)                                       0.736        0.708  1.941   25.949
+RecentLevel (ours, component)                                   0.680        0.647  1.355   14.920
+Seasonal naive (same hour last week)                            0.702        0.598  0.639    6.541
+Seasonal naive (same hour yesterday)                            0.682        0.630  1.512   17.299
+SeasonalRidge (ours)                                            1.330        0.675  1.451   13.621
 {'level': 0.9, 'hourly_coverage': 0.9027777777777778, 'hourly_points': 288, 'daily_total_coverage': 0.9166666666666666, 'folds': 12}
 Anomaly detection (held-out) ...
   RobustSeasonalDetector (ours)            F1=0.946 P=0.983 R=0.913 clean-alarms/series-week=0.23 by_mag={'<15%': 0.8286377708978329, '15-30%': 0.9324434824434825, '>30%': 0.9443478865406006}
@@ -150,3 +148,4 @@ SUB-0007         540       547      drop sustained     8.6           -755.1     
 SUB-0007         203       211      drop sustained    11.8           -666.8             2032.5           1365.7               9          9             -0.3
 SUB-0039         666       679     spike sustained    40.1            630.7             1809.7           2440.4              14         28              0.3
 SUB-0034         477       490     spike sustained    33.6            619.8             2121.9           2741.6              14         20              0.3
+ALL_EVALS_DONE

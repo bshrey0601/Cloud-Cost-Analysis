@@ -24,4 +24,8 @@ jobs:
           PYTHONPATH=src python -c "
           from cca.agent import CostAnalystAgent
           r = CostAnalystAgent().answer('Where can we save money?')
-          print(r.memo); print(r.audit.summary()); assert r.audit.passed"
+          print(r.memo); print(r.audit.summary()); assert r.audit.passed
+          r = CostAnalystAgent().answer('Why did SUB-0041 spend jump on day 8?')
+          print(r.memo); print(r.audit.summary()); assert r.audit.passed and 'DEP-00034' in r.memo"
+      - name: QBR pack builds and passes its audit
+        run: PYTHONPATH=src python -m cca.qbr_pptx --out qbr_ci.pptx

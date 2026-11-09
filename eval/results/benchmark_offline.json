@@ -21,7 +21,7 @@
       "qid": "total-0",
       "kind": "total_spend",
       "question": "How much did we spend in total in days 11-14?",
-      "truth": 2836413.6237662844,
+      "truth": 2836413.623766287,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -31,14 +31,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.11,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 11-14 was $2.84M [F1], averaging $709.1K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $41.9K [F3], 1.5% [F4] of spend.\n- SUB-0002: $32.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $23.8K [F7], 0.8% [F8] of spend.\n- SUB-0007: $20.1K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "total-1",
       "kind": "total_spend",
       "question": "How much did we spend in total in days 8-11?",
-      "truth": 2814894.2332581053,
+      "truth": 2814894.2332581086,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -48,14 +48,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 8-11 was $2.81M [F1], averaging $703.7K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $41.9K [F3], 1.5% [F4] of spend.\n- SUB-0002: $32.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $23.1K [F7], 0.8% [F8] of spend.\n- SUB-0004: $19.7K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "total-2",
       "kind": "total_spend",
       "question": "How much did we spend in total in days 19-27?",
-      "truth": 6421897.755501327,
+      "truth": 6421897.755501311,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -65,14 +65,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 19-27 was $6.42M [F1], averaging $713.5K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $94.3K [F3], 1.5% [F4] of spend.\n- SUB-0002: $72.2K [F5], 1.1% [F6] of spend.\n- SUB-0003: $56.3K [F7], 0.9% [F8] of spend.\n- SUB-0004: $44.1K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "total-3",
       "kind": "total_spend",
       "question": "How much did we spend in total in days 19-28?",
-      "truth": 7140604.429026402,
+      "truth": 7140604.429026404,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -82,14 +82,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 19-28 was $7.14M [F1], averaging $714.1K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $104.8K [F3], 1.5% [F4] of spend.\n- SUB-0002: $80.2K [F5], 1.1% [F6] of spend.\n- SUB-0003: $62.0K [F7], 0.9% [F8] of spend.\n- SUB-0004: $49.0K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "total-4",
       "kind": "total_spend",
       "question": "How much did we spend in total in days 8-17?",
-      "truth": 7043288.935875708,
+      "truth": 7043288.935875725,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -99,14 +99,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.09,
+      "seconds": 0.05,
       "memo": "**Answer:** Spend in days 8-17 was $7.04M [F1], averaging $704.3K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $104.7K [F3], 1.5% [F4] of spend.\n- SUB-0002: $80.2K [F5], 1.1% [F6] of spend.\n- SUB-0003: $58.8K [F7], 0.8% [F8] of spend.\n- SUB-0004: $49.2K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "total-5",
       "kind": "total_spend",
       "question": "How much did we spend in total in days 20-22?",
-      "truth": 2149919.155383864,
+      "truth": 2149919.1553838626,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -116,14 +116,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.05,
       "memo": "**Answer:** Spend in days 20-22 was $2.15M [F1], averaging $716.6K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $31.4K [F3], 1.5% [F4] of spend.\n- SUB-0002: $24.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $18.8K [F7], 0.9% [F8] of spend.\n- SUB-0038: $14.8K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "davg-0",
       "kind": "daily_average",
       "question": "What was the average daily spend over days 4-7?",
-      "truth": 703110.6121373948,
+      "truth": 703110.6121373946,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -133,14 +133,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 4-7 was $2.81M [F1], averaging $703.1K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $42.7K [F3], 1.5% [F4] of spend.\n- SUB-0002: $32.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $23.4K [F7], 0.8% [F8] of spend.\n- SUB-0004: $20.5K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "davg-1",
       "kind": "daily_average",
       "question": "What was the average daily spend over days 4-10?",
-      "truth": 703062.5603585143,
+      "truth": 703062.5603585126,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -150,14 +150,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 4-10 was $4.92M [F1], averaging $703.1K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $74.1K [F3], 1.5% [F4] of spend.\n- SUB-0002: $56.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $40.6K [F7], 0.8% [F8] of spend.\n- SUB-0004: $35.2K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "davg-2",
       "kind": "daily_average",
       "question": "What was the average daily spend over days 1-10?",
-      "truth": 702177.471355765,
+      "truth": 702177.4713557676,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -167,7 +167,7 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 1-10 was $7.02M [F1], averaging $702.2K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $105.5K [F3], 1.5% [F4] of spend.\n- SUB-0002: $80.2K [F5], 1.1% [F6] of spend.\n- SUB-0003: $58.2K [F7], 0.8% [F8] of spend.\n- SUB-0004: $50.7K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
@@ -184,14 +184,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 11-20 was $7.11M [F1], averaging $710.6K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $104.7K [F3], 1.5% [F4] of spend.\n- SUB-0002: $80.2K [F5], 1.1% [F6] of spend.\n- SUB-0003: $60.2K [F7], 0.8% [F8] of spend.\n- SUB-0004: $49.1K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "davg-4",
       "kind": "daily_average",
       "question": "What was the average daily spend over days 13-18?",
-      "truth": 705771.7792722391,
+      "truth": 705771.7792722386,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -201,14 +201,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.09,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 13-18 was $4.23M [F1], averaging $705.8K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $62.8K [F3], 1.5% [F4] of spend.\n- SUB-0002: $48.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $36.0K [F7], 0.9% [F8] of spend.\n- SUB-0010: $30.0K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "davg-5",
       "kind": "daily_average",
       "question": "What was the average daily spend over days 12-18?",
-      "truth": 706537.1823716549,
+      "truth": 706537.1823716566,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -218,14 +218,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 12-18 was $4.95M [F1], averaging $706.5K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $73.3K [F3], 1.5% [F4] of spend.\n- SUB-0002: $56.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $41.9K [F7], 0.8% [F8] of spend.\n- SUB-0004: $34.4K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "topsub-0",
       "kind": "top_subscription",
       "question": "Which subscription spent the most in days 13-20, and how much?",
-      "truth": 83797.8240000001,
+      "truth": 83797.82400000008,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -235,7 +235,7 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.09,
+      "seconds": 0.07,
       "memo": "**Answer:** Spend in days 13-20 was $5.69M [F1], averaging $711.1K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $83.8K [F3], 1.5% [F4] of spend.\n- SUB-0002: $64.2K [F5], 1.1% [F6] of spend.\n- SUB-0003: $48.4K [F7], 0.9% [F8] of spend.\n- SUB-0004: $39.2K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
@@ -252,7 +252,7 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.1,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 24-27 was $2.84M [F1], averaging $709.7K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $41.9K [F3], 1.5% [F4] of spend.\n- SUB-0002: $32.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $25.2K [F7], 0.9% [F8] of spend.\n- SUB-0010: $20.6K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
@@ -286,7 +286,7 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 10-16 was $4.94M [F1], averaging $705.2K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $73.3K [F3], 1.5% [F4] of spend.\n- SUB-0002: $56.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $41.4K [F7], 0.8% [F8] of spend.\n- SUB-0004: $34.4K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
@@ -303,7 +303,7 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.07,
       "memo": "**Answer:** Spend in days 5-14 was $7.06M [F1], averaging $705.9K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $105.4K [F3], 1.5% [F4] of spend.\n- SUB-0002: $80.2K [F5], 1.1% [F6] of spend.\n- SUB-0003: $58.4K [F7], 0.8% [F8] of spend.\n- SUB-0004: $49.6K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
@@ -320,14 +320,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.08,
+      "seconds": 0.05,
       "memo": "**Answer:** Spend in days 1-7 was $4.91M [F1], averaging $701.8K [F2] per day.\n\n**What drives it:**\n- SUB-0001: $74.1K [F3], 1.5% [F4] of spend.\n- SUB-0002: $56.1K [F5], 1.1% [F6] of spend.\n- SUB-0003: $41.0K [F7], 0.8% [F8] of spend.\n- SUB-0004: $36.0K [F9], 0.7% [F10] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "catshare-0",
       "kind": "category_share",
       "question": "What share of spend by workload category went to Delay-insensitive in days 12-19?",
-      "truth": 0.5756389278245386,
+      "truth": 0.5756389278245374,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -344,7 +344,7 @@
       "qid": "catshare-1",
       "kind": "category_share",
       "question": "What share of spend by workload category went to Interactive in days 14-23?",
-      "truth": 0.3323259236045837,
+      "truth": 0.3323259236045243,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -354,14 +354,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.07,
+      "seconds": 0.05,
       "memo": "**Answer:** Spend in days 14-23 was $7.11M [F1], averaging $710.8K [F2] per day.\n\n**What drives it:**\n- Delay-insensitive: $4.09M [F3], 57.5% [F4] of spend.\n- Interactive: $2.36M [F5], 33.2% [F6] of spend.\n- Unknown: $660.1K [F7], 9.3% [F8] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "catshare-2",
       "kind": "category_share",
       "question": "What share of spend by workload category went to Unknown in days 13-16?",
-      "truth": 0.08647503541854257,
+      "truth": 0.08647503541854307,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -371,14 +371,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.07,
+      "seconds": 0.06,
       "memo": "**Answer:** Spend in days 13-16 was $2.82M [F1], averaging $705.4K [F2] per day.\n\n**What drives it:**\n- Delay-insensitive: $1.63M [F3], 57.9% [F4] of spend.\n- Interactive: $943.5K [F5], 33.4% [F6] of spend.\n- Unknown: $244.0K [F7], 8.6% [F8] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "catshare-3",
       "kind": "category_share",
       "question": "What share of spend by workload category went to Delay-insensitive in days 4-13?",
-      "truth": 0.5767444471976729,
+      "truth": 0.5767444471976727,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -388,14 +388,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.07,
+      "seconds": 0.05,
       "memo": "**Answer:** Spend in days 4-13 was $7.05M [F1], averaging $704.8K [F2] per day.\n\n**What drives it:**\n- Delay-insensitive: $4.06M [F3], 57.7% [F4] of spend.\n- Interactive: $2.32M [F5], 32.9% [F6] of spend.\n- Unknown: $667.0K [F7], 9.5% [F8] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "catshare-4",
       "kind": "category_share",
       "question": "What share of spend by workload category went to Interactive in days 17-25?",
-      "truth": 0.3325287398580722,
+      "truth": 0.3325287398580927,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -412,7 +412,7 @@
       "qid": "catshare-5",
       "kind": "category_share",
       "question": "What share of spend by workload category went to Unknown in days 13-22?",
-      "truth": 0.09396576598759049,
+      "truth": 0.09396576598759053,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -422,14 +422,14 @@
       "tools": [
         "spend_summary"
       ],
-      "seconds": 0.07,
+      "seconds": 0.05,
       "memo": "**Answer:** Spend in days 13-22 was $7.12M [F1], averaging $711.6K [F2] per day.\n\n**What drives it:**\n- Delay-insensitive: $4.09M [F3], 57.4% [F4] of spend.\n- Interactive: $2.36M [F5], 33.2% [F6] of spend.\n- Unknown: $668.6K [F7], 9.4% [F8] of spend.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "change-0",
       "kind": "period_change",
       "question": "By what percent did average daily spend change between days 9-15 and days 22-28?",
-      "truth": 0.006362977106032669,
+      "truth": 0.006362977106034822,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -439,65 +439,14 @@
       "tools": [
         "compare_periods"
       ],
-      "seconds": 0.12,
+      "seconds": 0.08,
       "memo": "**Answer:** Average daily spend increased from $705.7K [F1] in days 9-15 to $710.2K [F2] in days 22-28, rising by $4.5K [F3] per day (0.6% [F4]).\n\n**What drives it:**\n- SUB-0058 added $3.1K [F5] per day, explaining 68.0% [F6] of the net change.\n- SUB-0189 removed $2.8K [F7] per day, offsetting 63.0% [F8] of the net change.\n- SUB-0100 removed $2.5K [F9] per day, offsetting 56.5% [F10] of the net change.\n- SUB-0038 added $1.9K [F11] per day, explaining 42.1% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0058 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
       "qid": "change-1",
       "kind": "period_change",
       "question": "By what percent did average daily spend change between days 16-22 and days 23-29?",
-      "truth": -0.0035808546340901936,
-      "correct": true,
-      "final_audit_pass": true,
-      "first_draft_pass": true,
-      "first_draft_issues": 0,
-      "revisions": 0,
-      "fell_back": false,
-      "tools": [
-        "compare_periods"
-      ],
-      "seconds": 0.12,
-      "memo": "**Answer:** Average daily spend decreased from $713.2K [F1] in days 16-22 to $710.6K [F2] in days 23-29, falling by $2.6K [F3] per day (0.4% [F4]).\n\n**What drives it:**\n- SUB-0183 added $1.4K [F5] per day, offsetting 54.6% [F6] of the net change.\n- SUB-0257 added $1.0K [F7] per day, offsetting 40.3% [F8] of the net change.\n- SUB-0100 removed $1.0K [F9] per day, explaining 40.2% [F10] of the net change.\n- SUB-0372 removed $898.53 [F11] per day, explaining 35.2% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0183 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
-    },
-    {
-      "qid": "change-2",
-      "kind": "period_change",
-      "question": "By what percent did average daily spend change between days 8-14 and days 17-23?",
-      "truth": 0.010237888544708418,
-      "correct": true,
-      "final_audit_pass": true,
-      "first_draft_pass": true,
-      "first_draft_issues": 0,
-      "revisions": 0,
-      "fell_back": false,
-      "tools": [
-        "compare_periods"
-      ],
-      "seconds": 0.1,
-      "memo": "**Answer:** Average daily spend increased from $706.5K [F1] in days 8-14 to $713.7K [F2] in days 17-23, rising by $7.2K [F3] per day (1.0% [F4]).\n\n**What drives it:**\n- SUB-0058 added $3.6K [F5] per day, explaining 50.4% [F6] of the net change.\n- SUB-0189 removed $3.0K [F7] per day, offsetting 42.1% [F8] of the net change.\n- SUB-0100 removed $1.9K [F9] per day, offsetting 26.0% [F10] of the net change.\n- SUB-0038 added $1.8K [F11] per day, explaining 24.2% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0058 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
-    },
-    {
-      "qid": "change-3",
-      "kind": "period_change",
-      "question": "By what percent did average daily spend change between days 23-25 and days 28-30?",
-      "truth": 0.013353882578437145,
-      "correct": true,
-      "final_audit_pass": true,
-      "first_draft_pass": true,
-      "first_draft_issues": 0,
-      "revisions": 0,
-      "fell_back": false,
-      "tools": [
-        "compare_periods"
-      ],
-      "seconds": 0.1,
-      "memo": "**Answer:** Average daily spend increased from $702.9K [F1] in days 23-25 to $712.2K [F2] in days 28-30, rising by $9.4K [F3] per day (1.3% [F4]).\n\n**What drives it:**\n- SUB-0078 added $1.4K [F5] per day, explaining 15.3% [F6] of the net change.\n- SUB-0134 added $1.4K [F7] per day, explaining 14.5% [F8] of the net change.\n- SUB-0179 added $1.2K [F9] per day, explaining 12.6% [F10] of the net change.\n- SUB-0110 removed $933.05 [F11] per day, offsetting 9.9% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0078 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
-    },
-    {
-      "qid": "change-4",
-      "kind": "period_change",
-      "question": "By what percent did average daily spend change between days 23-25 and days 28-30?",
-      "truth": 0.013353882578435844,
+      "truth": -0.0035808546340758245,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -508,13 +457,13 @@
         "compare_periods"
       ],
       "seconds": 0.07,
-      "memo": "**Answer:** Average daily spend increased from $702.9K [F1] in days 23-25 to $712.2K [F2] in days 28-30, rising by $9.4K [F3] per day (1.3% [F4]).\n\n**What drives it:**\n- SUB-0078 added $1.4K [F5] per day, explaining 15.3% [F6] of the net change.\n- SUB-0134 added $1.4K [F7] per day, explaining 14.5% [F8] of the net change.\n- SUB-0179 added $1.2K [F9] per day, explaining 12.6% [F10] of the net change.\n- SUB-0110 removed $933.05 [F11] per day, offsetting 9.9% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0078 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
+      "memo": "**Answer:** Average daily spend decreased from $713.2K [F1] in days 16-22 to $710.6K [F2] in days 23-29, falling by $2.6K [F3] per day (0.4% [F4]).\n\n**What drives it:**\n- SUB-0183 added $1.4K [F5] per day, offsetting 54.6% [F6] of the net change.\n- SUB-0257 added $1.0K [F7] per day, offsetting 40.3% [F8] of the net change.\n- SUB-0100 removed $1.0K [F9] per day, explaining 40.2% [F10] of the net change.\n- SUB-0372 removed $898.53 [F11] per day, explaining 35.2% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0183 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     },
     {
-      "qid": "change-5",
+      "qid": "change-2",
       "kind": "period_change",
-      "question": "By what percent did average daily spend change between days 16-21 and days 23-28?",
-      "truth": -0.004842305026309126,
+      "question": "By what percent did average daily spend change between days 8-14 and days 17-23?",
+      "truth": 0.010237888544709571,
       "correct": true,
       "final_audit_pass": true,
       "first_draft_pass": true,
@@ -524,7 +473,58 @@
       "tools": [
         "compare_periods"
       ],
-      "seconds": 0.1,
+      "seconds": 0.07,
+      "memo": "**Answer:** Average daily spend increased from $706.5K [F1] in days 8-14 to $713.7K [F2] in days 17-23, rising by $7.2K [F3] per day (1.0% [F4]).\n\n**What drives it:**\n- SUB-0058 added $3.6K [F5] per day, explaining 50.4% [F6] of the net change.\n- SUB-0189 removed $3.0K [F7] per day, offsetting 42.1% [F8] of the net change.\n- SUB-0100 removed $1.9K [F9] per day, offsetting 26.0% [F10] of the net change.\n- SUB-0038 added $1.8K [F11] per day, explaining 24.2% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0058 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
+    },
+    {
+      "qid": "change-3",
+      "kind": "period_change",
+      "question": "By what percent did average daily spend change between days 23-25 and days 28-30?",
+      "truth": 0.013353882578431508,
+      "correct": true,
+      "final_audit_pass": true,
+      "first_draft_pass": true,
+      "first_draft_issues": 0,
+      "revisions": 0,
+      "fell_back": false,
+      "tools": [
+        "compare_periods"
+      ],
+      "seconds": 0.06,
+      "memo": "**Answer:** Average daily spend increased from $702.9K [F1] in days 23-25 to $712.2K [F2] in days 28-30, rising by $9.4K [F3] per day (1.3% [F4]).\n\n**What drives it:**\n- SUB-0078 added $1.4K [F5] per day, explaining 15.3% [F6] of the net change.\n- SUB-0134 added $1.4K [F7] per day, explaining 14.5% [F8] of the net change.\n- SUB-0179 added $1.2K [F9] per day, explaining 12.6% [F10] of the net change.\n- SUB-0110 removed $933.05 [F11] per day, offsetting 9.9% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0078 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
+    },
+    {
+      "qid": "change-4",
+      "kind": "period_change",
+      "question": "By what percent did average daily spend change between days 23-25 and days 28-30?",
+      "truth": 0.013353882578430667,
+      "correct": true,
+      "final_audit_pass": true,
+      "first_draft_pass": true,
+      "first_draft_issues": 0,
+      "revisions": 0,
+      "fell_back": false,
+      "tools": [
+        "compare_periods"
+      ],
+      "seconds": 0.05,
+      "memo": "**Answer:** Average daily spend increased from $702.9K [F1] in days 23-25 to $712.2K [F2] in days 28-30, rising by $9.4K [F3] per day (1.3% [F4]).\n\n**What drives it:**\n- SUB-0078 added $1.4K [F5] per day, explaining 15.3% [F6] of the net change.\n- SUB-0134 added $1.4K [F7] per day, explaining 14.5% [F8] of the net change.\n- SUB-0179 added $1.2K [F9] per day, explaining 12.6% [F10] of the net change.\n- SUB-0110 removed $933.05 [F11] per day, offsetting 9.9% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0078 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
+    },
+    {
+      "qid": "change-5",
+      "kind": "period_change",
+      "question": "By what percent did average daily spend change between days 16-21 and days 23-28?",
+      "truth": -0.0048423050264556145,
+      "correct": true,
+      "final_audit_pass": true,
+      "first_draft_pass": true,
+      "first_draft_issues": 0,
+      "revisions": 0,
+      "fell_back": false,
+      "tools": [
+        "compare_periods"
+      ],
+      "seconds": 0.07,
       "memo": "**Answer:** Average daily spend decreased from $713.4K [F1] in days 16-21 to $709.9K [F2] in days 23-28, falling by $3.5K [F3] per day (0.5% [F4]).\n\n**What drives it:**\n- SUB-0183 added $1.7K [F5] per day, offsetting 49.8% [F6] of the net change.\n- SUB-0100 removed $1.2K [F7] per day, explaining 34.3% [F8] of the net change.\n- SUB-0257 added $1.1K [F9] per day, offsetting 31.4% [F10] of the net change.\n- SUB-0372 removed $1.1K [F11] per day, explaining 30.6% [F12] of the net change.\n\n**Recommended action:**\n- Ask the owner of SUB-0183 to confirm whether the change is planned.\n\n**Caveats:**\n- Costs apply current Azure list prices to Microsoft's 2019 usage trace; Spot and commitment discounts are inputs, not facts."
     }
   ]

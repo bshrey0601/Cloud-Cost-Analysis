@@ -17,6 +17,7 @@ import numpy as np
 from cca import anomaly as A
 from cca import forecasting as F
 from cca import optimization as O
+from cca import rootcause as RC
 from cca.ledger import Ledger
 from cca.pricing import PRICE_SOURCE
 
@@ -155,7 +156,7 @@ def forecast_spend(con, scope: str = "total", horizon_days: int = 7) -> dict:
     if not 1 <= h <= 14:
         raise ValueError("horizon_days must be between 1 and 14")
     y = _hourly_series(_db_key(con), scope)
-    fc = F.forecast_with_intervals(y, h * 24, level=0.9)
+    fc = F.forecast_with_intervals(y, h * 24, level=0.9, model=F.choose_model(scope, h * 24))
     last7 = float(y[-7 * 24:].sum()) / 7
     return {"scope": scope, "horizon_days": h, "forecast_days": [31, 30 + h],
             "forecast_total_usd": fc.total_point, "lower_90_usd": fc.total_lower, "upper_90_usd": fc.total_upper,
@@ -175,6 +176,29 @@ def optimization_opportunities(con, commit_discount: float = 0.0, spot_discount:
             "hard_savings_pct": r["hard_savings_usd"] / r["total_cost_usd"], "levers": levers,
             "top_subscriptions_by_savings": top,
             "note": "Hard savings = idle + rightsizing (no assumed discounts). Levers overlap; do not add Spot to rightsizing."}
+
+
+def explain_change(con, subscription: str, base_start: int, base_end: int, comp_start: int, comp_end: int,
+                   top_n: int = 3) -> dict:
+    """Root cause of a team's spend change, decomposed exactly by deployment."""
+    return RC.explain_change(con, subscription, base_start, base_end, comp_start, comp_end, top_n)
+
+
+def budget_vs_actual(con, plan_start: int = 8, plan_end: int = 14, period_start: int = 15, period_end: int = 30,
+                     dimension: str = "subscription", top_n: int = 5) -> dict:
+    """Run-rate budget set on `plan_end` (avg daily spend of the plan window x period days) vs actual."""
+    from cca.qbr import budget_vs_actual as bva
+    for a, b in ((plan_start, plan_end), (period_start, period_end)):
+        _days(a, b)
+    df = bva(con, dimension, int(plan_start), int(plan_end), int(period_start), int(period_end))
+    budget, actual = float(df.budget_usd.sum()), float(df.actual_usd.sum())
+    top = [{"name": r.name, "budget_usd": float(r.budget_usd), "actual_usd": float(r.actual_usd),
+            "variance_usd": float(r.variance_usd), "unbudgeted": bool(r.unbudgeted)}
+           for r in df.head(int(top_n)).itertuples()]
+    return {"plan_days": [int(plan_start), int(plan_end)], "period_days": [int(period_start), int(period_end)],
+            "dimension": dimension, "budget_usd": budget, "actual_usd": actual,
+            "variance_usd": actual - budget, "variance_pct": (actual - budget) / budget,
+            "unbudgeted_usd": float(df.loc[df.unbudgeted, "actual_usd"].sum()), "top": top}
 
 
 # --------------------------------------------- fact posting per tool result
@@ -218,6 +242,30 @@ def _post_facts(ledger: Ledger, tool: str, args: dict, res: dict) -> None:
         P(f"Forecast daily average, {w}", "forecast_daily_avg_usd", "usd")
         P(f"Actual daily average, last 7 days ({res['scope']})", "last7_daily_avg_usd", "usd")
         P(f"Forecast vs last-7-day daily average, % ({res['scope']})", "change_vs_last7_pct", "pct")
+    elif tool == "budget_vs_actual":
+        P("Budget, review period", "budget_usd", "usd")
+        P("Actual spend, review period", "actual_usd", "usd")
+        P("Variance vs budget", "variance_usd", "usd")
+        P("Variance vs budget, %", "variance_pct", "pct")
+        P("Unbudgeted spend (teams with no budget)", "unbudgeted_usd", "usd")
+        for i, t in enumerate(res["top"]):
+            P(f"Budget: {t['name']}", f"top.{i}.budget_usd", "usd")
+            P(f"Actual spend: {t['name']}", f"top.{i}.actual_usd", "usd")
+            P(f"Variance vs budget: {t['name']}", f"top.{i}.variance_usd", "usd")
+    elif tool == "explain_change":
+        sub, b, c = res["subscription"], res["base_days"], res["comp_days"]
+        P(f"{sub} daily avg spend, days {b[0]}-{b[1]} (base)", "base_daily_avg_usd", "usd")
+        P(f"{sub} daily avg spend, days {c[0]}-{c[1]} (comparison)", "comp_daily_avg_usd", "usd")
+        P(f"Change in {sub} daily avg spend (comparison - base)", "change_usd_per_day", "usd")
+        if res["change_pct"] is not None:
+            P(f"Change in {sub} daily avg spend, %", "change_pct", "pct")
+        P(f"Deployments in {sub} whose spend changed", "deployments_changed", "count")
+        P(f"Share of {sub} gross change explained by the top deployment", "top_driver_share_of_gross_change", "pct")
+        for i, d in enumerate(res["drivers"]):
+            P(f"Change in daily avg spend from {d['name']} ({d['kind']})", f"drivers.{i}.change_usd_per_day", "usd")
+            P(f"{d['name']} share of {sub} net change", f"drivers.{i}.share_of_change", "pct")
+            P(f"Total VMs in {d['name']}", f"drivers.{i}.vm_count", "count")
+            P(f"VMs {d['name']} launched in days {c[0]}-{c[1]}", f"drivers.{i}.vms_created_in_comparison", "count")
     elif tool == "optimization_opportunities":
         P("Total 30-day spend", "total_cost_usd", "usd")
         P("Hard savings (idle + rightsizing), 30 days", "hard_savings_usd", "usd")
@@ -238,6 +286,8 @@ TOOLS: dict[str, Callable] = {
     "detect_anomalies": detect_anomalies,
     "forecast_spend": forecast_spend,
     "optimization_opportunities": optimization_opportunities,
+    "explain_change": explain_change,
+    "budget_vs_actual": budget_vs_actual,
 }
 
 TOOL_SPECS = """
@@ -252,6 +302,11 @@ forecast_spend(scope="total"|category|"SUB-xxxx", horizon_days=7)
     -- forecast beyond day 30 with 90% conformal intervals.
 optimization_opportunities(commit_discount=0.0, spot_discount=0.0)
     -- idle, rightsizing, commitment and Spot levers with savings.
+explain_change(subscription="SUB-0041", base_start, base_end, comp_start, comp_end, top_n=3)
+    -- ROOT CAUSE: decomposes one team's spend change exactly by deployment (launched / shut down /
+       scaled up / scaled down) and flags likely migrations. Use for "why did SUB-xxxx change?".
+budget_vs_actual(plan_start=8, plan_end=14, period_start=15, period_end=30, dimension="subscription"|"category", top_n=5)
+    -- run-rate budget (set on plan_end from the plan window's daily average) vs actual, total and by team/category.
 compute(expression, label, unit="usd"|"pct"|"count")
     -- arithmetic over existing fact ids, e.g. expression="(F7 - F6) / F6". Use it for ANY derived number.
 """.strip()

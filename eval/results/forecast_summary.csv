@@ -1,57 +1,73 @@
 horizon_hours,series,model,folds,hourly_wape,daily_total_mape
-24,Delay-insensitive,"CloudSpendForecaster (ours, self-selecting blend)",15,0.0026931557420192677,0.0025427088258922997
-24,Delay-insensitive,Holt-Winters (statsmodels),15,0.0017498858128392465,0.0015573207528155738
-24,Delay-insensitive,Naive (last value),15,0.001968902258001996,0.0018455392115652844
-24,Delay-insensitive,ProfileDampedTrend (ours),15,0.0025152905164218054,0.002371105115496991
-24,Delay-insensitive,Seasonal naive (same hour last week),15,0.013217415638415133,0.012674726734404899
-24,Delay-insensitive,Seasonal naive (same hour yesterday),15,0.004444889480716602,0.004222466834922272
-24,Delay-insensitive,SeasonalRidge (ours),15,0.007913088048593486,0.007821116067017157
-24,Interactive,"CloudSpendForecaster (ours, self-selecting blend)",15,0.001277812077210686,0.0010947360185850348
-24,Interactive,Holt-Winters (statsmodels),15,0.0013523900766147963,0.0011415367236031768
-24,Interactive,Naive (last value),15,0.0017021480664828374,0.0015843532828000472
-24,Interactive,ProfileDampedTrend (ours),15,0.001277812077210686,0.0010947360185850348
-24,Interactive,Seasonal naive (same hour last week),15,0.011968708712742885,0.011839903352276106
-24,Interactive,Seasonal naive (same hour yesterday),15,0.0034015804576804486,0.0031565596404923564
-24,Interactive,SeasonalRidge (ours),15,0.005958657330358886,0.00583511941349445
-24,Total,"CloudSpendForecaster (ours, self-selecting blend)",15,0.010885315337797847,0.008643235890999667
-24,Total,Holt-Winters (statsmodels),15,0.011624432043758853,0.01032738439731251
-24,Total,Naive (last value),15,0.014891898454422165,0.01268424829087933
-24,Total,ProfileDampedTrend (ours),15,0.014213380279140783,0.013716374562120144
-24,Total,Seasonal naive (same hour last week),15,0.012072593363368347,0.010128539208764407
-24,Total,Seasonal naive (same hour yesterday),15,0.013158885126722095,0.010888500557704739
-24,Total,SeasonalRidge (ours),15,0.010687094156220716,0.008206091971651964
+24,Delay-insensitive,"CloudSpendForecaster (ours, self-selecting blend)",15,0.002693155742018937,0.002542708825892775
+24,Delay-insensitive,"CloudSpendForecaster v2 (step-aware, experimental)",15,0.002655417792199915,0.002538037501610085
+24,Delay-insensitive,Holt-Winters (statsmodels),15,0.0017475963092079647,0.0015591052515395755
+24,Delay-insensitive,Naive (last value),15,0.001968902258002169,0.0018455392115655598
+24,Delay-insensitive,ProfileDampedTrend (ours),15,0.0025152905164211653,0.002371105115496155
+24,Delay-insensitive,"RecentLevel (ours, component)",15,0.0045952605865675735,0.004469321751970632
+24,Delay-insensitive,Seasonal naive (same hour last week),15,0.013217415638415058,0.01267472673440487
+24,Delay-insensitive,Seasonal naive (same hour yesterday),15,0.004444889480716684,0.004222466834922425
+24,Delay-insensitive,SeasonalRidge (ours),15,0.00791308804859413,0.007821116067017892
+24,Interactive,"CloudSpendForecaster (ours, self-selecting blend)",15,0.0012778120772105315,0.0010947360185847457
+24,Interactive,"CloudSpendForecaster v2 (step-aware, experimental)",15,0.0015333305142390498,0.0013444663872486343
+24,Interactive,Holt-Winters (statsmodels),15,0.0013597736469851153,0.001149568055786377
+24,Interactive,Naive (last value),15,0.0017021480664831405,0.0015843532828002974
+24,Interactive,ProfileDampedTrend (ours),15,0.0012778120772105315,0.0010947360185847457
+24,Interactive,"RecentLevel (ours, component)",15,0.0035105657636501347,0.0033675675311058725
+24,Interactive,Seasonal naive (same hour last week),15,0.011968708712742884,0.011839903352276146
+24,Interactive,Seasonal naive (same hour yesterday),15,0.003401580457680491,0.0031565596404925047
+24,Interactive,SeasonalRidge (ours),15,0.005958657330359525,0.005835119413495372
+24,Total,"CloudSpendForecaster (ours, self-selecting blend)",15,0.010885315337797966,0.008643235891000127
+24,Total,"CloudSpendForecaster v2 (step-aware, experimental)",15,0.010552948478138202,0.008354068886155025
+24,Total,Holt-Winters (statsmodels),15,0.011723761699435419,0.010419848395536838
+24,Total,Naive (last value),15,0.01489189845442251,0.012684248290879835
+24,Total,ProfileDampedTrend (ours),15,0.014213380279141137,0.01371637456212074
+24,Total,"RecentLevel (ours, component)",15,0.01171016224084854,0.01010133146622786
+24,Total,Seasonal naive (same hour last week),15,0.012072593363368382,0.010128539208764477
+24,Total,Seasonal naive (same hour yesterday),15,0.01315888512672192,0.010888500557704595
+24,Total,SeasonalRidge (ours),15,0.010687094156220949,0.008206091971652375
 24,Unknown,"CloudSpendForecaster (ours, self-selecting blend)",15,0.11866531324388806,0.10434259752651169
-24,Unknown,Holt-Winters (statsmodels),15,0.12044649865953143,0.10469794345323963
-24,Unknown,Naive (last value),15,0.14930972380715332,0.12607196935129558
-24,Unknown,ProfileDampedTrend (ours),15,0.14016092822519005,0.12722981643880021
-24,Unknown,Seasonal naive (same hour last week),15,0.16447011249642207,0.15189382563255682
-24,Unknown,Seasonal naive (same hour yesterday),15,0.1379046180868179,0.11708562027242354
-24,Unknown,SeasonalRidge (ours),15,0.1359950136732481,0.1254951867186322
-168,Delay-insensitive,"CloudSpendForecaster (ours, self-selecting blend)",9,0.0077968606254697065,0.0073055523090869694
-168,Delay-insensitive,Holt-Winters (statsmodels),9,0.007269736912018515,0.006368067774402658
-168,Delay-insensitive,Naive (last value),9,0.007187946720962879,0.006642055325078426
-168,Delay-insensitive,ProfileDampedTrend (ours),9,0.007767757999053255,0.007359081537740288
-168,Delay-insensitive,Seasonal naive (same hour last week),9,0.007738614048907486,0.007017376680677426
-168,Delay-insensitive,Seasonal naive (same hour yesterday),9,0.0074821821113012325,0.006820141872558222
-168,Delay-insensitive,SeasonalRidge (ours),9,0.013872439681051594,0.013295224020553383
-168,Interactive,"CloudSpendForecaster (ours, self-selecting blend)",9,0.00746304936917595,0.005885323324840973
-168,Interactive,Holt-Winters (statsmodels),9,0.007236571520277931,0.007020304061007797
-168,Interactive,Naive (last value),9,0.007034393238438886,0.0066580776739537445
-168,Interactive,ProfileDampedTrend (ours),9,0.007304834036224979,0.007079626995825269
-168,Interactive,Seasonal naive (same hour last week),9,0.00884737531075398,0.005983843346398451
-168,Interactive,Seasonal naive (same hour yesterday),9,0.007183598435056393,0.006295149348686167
-168,Interactive,SeasonalRidge (ours),9,0.008744708956601217,0.006747410946865141
-168,Total,"CloudSpendForecaster (ours, self-selecting blend)",9,0.014475486424070363,0.009097424527115731
-168,Total,Holt-Winters (statsmodels),9,0.02292738944867173,0.020603361881453414
-168,Total,Naive (last value),9,0.024234431066769743,0.021424828185048518
-168,Total,ProfileDampedTrend (ours),9,0.022775959077286894,0.019410698835553353
-168,Total,Seasonal naive (same hour last week),9,0.012879281992856848,0.006387606703017506
-168,Total,Seasonal naive (same hour yesterday),9,0.02022372437548319,0.015124230512280734
-168,Total,SeasonalRidge (ours),9,0.01677865342607769,0.01451098275125021
-168,Unknown,"CloudSpendForecaster (ours, self-selecting blend)",9,0.16126750840038928,0.08140357516825943
-168,Unknown,Holt-Winters (statsmodels),9,0.27155437157220363,0.21526872586367513
-168,Unknown,Naive (last value),9,0.27757768325422894,0.2101608355479237
-168,Unknown,ProfileDampedTrend (ours),9,0.30017148918293546,0.2594931412568274
-168,Unknown,Seasonal naive (same hour last week),9,0.1469252340698093,0.06541210247082901
-168,Unknown,Seasonal naive (same hour yesterday),9,0.24293896564364312,0.17298944350703976
-168,Unknown,SeasonalRidge (ours),9,0.19422830450885356,0.1362104786445044
+24,Unknown,"CloudSpendForecaster v2 (step-aware, experimental)",15,0.11602298050776937,0.10397611693789657
+24,Unknown,Holt-Winters (statsmodels),15,0.1215001799651824,0.10518598810730843
+24,Unknown,Naive (last value),15,0.14930972380715304,0.1260719693512951
+24,Unknown,ProfileDampedTrend (ours),15,0.14016092822518994,0.12722981643880005
+24,Unknown,"RecentLevel (ours, component)",15,0.12284070480972248,0.10876741302482877
+24,Unknown,Seasonal naive (same hour last week),15,0.1644701124964221,0.15189382563255674
+24,Unknown,Seasonal naive (same hour yesterday),15,0.13790461808681792,0.11708562027242349
+24,Unknown,SeasonalRidge (ours),15,0.1359950136732483,0.12549518671863236
+168,Delay-insensitive,"CloudSpendForecaster (ours, self-selecting blend)",9,0.007796860625470099,0.007305552309088775
+168,Delay-insensitive,"CloudSpendForecaster v2 (step-aware, experimental)",9,0.007502701802622506,0.006764442522243171
+168,Delay-insensitive,Holt-Winters (statsmodels),9,0.007268922771531251,0.006369427713964733
+168,Delay-insensitive,Naive (last value),9,0.007187946720962489,0.006642055325077823
+168,Delay-insensitive,ProfileDampedTrend (ours),9,0.007767757999051431,0.007359081537737945
+168,Delay-insensitive,"RecentLevel (ours, component)",9,0.007438119223054919,0.0067980333536887694
+168,Delay-insensitive,Seasonal naive (same hour last week),9,0.007738614048907403,0.007017376680677298
+168,Delay-insensitive,Seasonal naive (same hour yesterday),9,0.007482182111301276,0.006820141872558148
+168,Delay-insensitive,SeasonalRidge (ours),9,0.013872439681059097,0.013295224020561755
+168,Interactive,"CloudSpendForecaster (ours, self-selecting blend)",9,0.007463049369176417,0.005885323324841372
+168,Interactive,"CloudSpendForecaster v2 (step-aware, experimental)",9,0.0076510417924908584,0.006652666464773775
+168,Interactive,Holt-Winters (statsmodels),9,0.0072187800121985436,0.006998083721931819
+168,Interactive,Naive (last value),9,0.007034393238438507,0.006658077673953274
+168,Interactive,ProfileDampedTrend (ours),9,0.007304834036224023,0.007079626995824089
+168,Interactive,"RecentLevel (ours, component)",9,0.007220273758886703,0.0064701869957041755
+168,Interactive,Seasonal naive (same hour last week),9,0.008847375310754085,0.005983843346398323
+168,Interactive,Seasonal naive (same hour yesterday),9,0.007183598435056403,0.006295149348686023
+168,Interactive,SeasonalRidge (ours),9,0.008744708956601434,0.006747410946866059
+168,Total,"CloudSpendForecaster (ours, self-selecting blend)",9,0.014475486424070491,0.009097424527116062
+168,Total,"CloudSpendForecaster v2 (step-aware, experimental)",9,0.01451017413159814,0.009015815483638143
+168,Total,Holt-Winters (statsmodels),9,0.022924350990034616,0.02056736504341273
+168,Total,Naive (last value),9,0.024234431066770416,0.02142482818504934
+168,Total,ProfileDampedTrend (ours),9,0.02277595907728712,0.019410698835553308
+168,Total,"RecentLevel (ours, component)",9,0.017657045597571825,0.01355396314747254
+168,Total,Seasonal naive (same hour last week),9,0.012879281992856947,0.006387606703017652
+168,Total,Seasonal naive (same hour yesterday),9,0.02022372437548325,0.01512423051228094
+168,Total,SeasonalRidge (ours),9,0.016778653426078267,0.01451098275125104
+168,Unknown,"CloudSpendForecaster (ours, self-selecting blend)",9,0.16126750840038906,0.08140357516825872
+168,Unknown,"CloudSpendForecaster v2 (step-aware, experimental)",9,0.1717412204374106,0.10009429255445301
+168,Unknown,Holt-Winters (statsmodels),9,0.27190894047124936,0.2156614301585779
+168,Unknown,Naive (last value),9,0.27757768325422866,0.2101608355479235
+168,Unknown,ProfileDampedTrend (ours),9,0.30017148918293546,0.25949314125682743
+168,Unknown,"RecentLevel (ours, component)",9,0.2161955176653309,0.1492027319866502
+168,Unknown,Seasonal naive (same hour last week),9,0.14692523406980934,0.06541210247082903
+168,Unknown,Seasonal naive (same hour yesterday),9,0.24293896564364317,0.17298944350703976
+168,Unknown,SeasonalRidge (ours),9,0.19422830450885448,0.13621047864450675

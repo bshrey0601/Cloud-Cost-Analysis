@@ -96,7 +96,26 @@ def rule_plan(question: str) -> list[dict]:
         steps.append({"tool": "detect_anomalies", "args": {"scope": scope or "subscriptions", "top_n": 5}})
     if re.search(r"sav|optimi|waste|idle|rightsiz|right-siz|reduce (?:cost|spend)|cut cost|commit|reserv|spot", q):
         steps.append({"tool": "optimization_opportunities", "args": {}})
-    if re.search(r"compar|change|why|increase|decrease|grow|drop|variance|vs\.?|versus|differ", q) and wins:
+    sub = scope if scope and scope.startswith("SUB-") else None
+    root_q = re.search(r"why|cause|root|what changed|who|driv|explain|compar|change|increase|decrease|jump|drop", q)
+    if sub and root_q and not re.search(r"anomal|spike|unusual|outlier", q):
+        if len(wins) >= 2:
+            (bs, be), (cs, ce) = sorted(wins[:2])
+        elif wins:
+            from cca.rootcause import event_windows
+            w = event_windows(wins[0][0]) if wins[0][0] == wins[0][1] else None
+            if w:
+                bs, be, cs, ce = w
+            else:
+                cs, ce = wins[0]
+                n = ce - cs + 1
+                bs, be = max(1, cs - n), cs - 1
+        else:
+            bs, be, cs, ce = 1, 15, 16, 30
+        if be >= bs >= 1:
+            steps.append({"tool": "explain_change", "args": {"subscription": sub, "base_start": bs, "base_end": be,
+                                                              "comp_start": cs, "comp_end": ce, "top_n": 3}})
+    elif re.search(r"compar|change|why|increase|decrease|grow|drop|variance|vs\.?|versus|differ", q) and wins:
         if len(wins) >= 2:
             # base = the earlier window, comparison = the later one, whatever order they're written in
             (bs, be), (cs, ce) = sorted(wins[:2])
@@ -108,7 +127,7 @@ def rule_plan(question: str) -> list[dict]:
                 bs, be, cs, ce = cs, ce, ce + 1, min(30, ce + n)
         steps.append({"tool": "compare_periods", "args": {"base_start": bs, "base_end": be, "comp_start": cs,
                                                            "comp_end": ce, "dimension": _dimension(question)}})
-    has_compare = any(st["tool"] == "compare_periods" for st in steps)
+    has_compare = any(st["tool"] in ("compare_periods", "explain_change") for st in steps)
     if not steps or (not has_compare and re.search(r"\btop\b|largest|biggest|most expensive|how much|breakdown|by spend|spend by", q)):
         s, e = wins[0] if wins else (1, 30)
         steps.append({"tool": "spend_summary", "args": {"start_day": s, "end_day": e,
@@ -190,6 +209,34 @@ def template_memo(question: str, ledger: Ledger, results: list[tuple[dict, dict]
             top = res["top_subscriptions_by_savings"]
             if top:
                 actions.append(f"Start with {top[0]['name']}, the subscription with the largest hard savings.")
+        elif t == "explain_change" and ids:
+            lab = {ledger.facts[i].label: i for i in ids}
+            sub, b, c = res["subscription"], res["base_days"], res["comp_days"]
+            verb = "rose" if res["change_usd_per_day"] >= 0 else "fell"
+            base_id = lab[f"{sub} daily avg spend, days {b[0]}-{b[1]} (base)"]
+            comp_id = lab[f"{sub} daily avg spend, days {c[0]}-{c[1]} (comparison)"]
+            chg_id = lab[f"Change in {sub} daily avg spend (comparison - base)"]
+            answer.append(f"{sub}'s daily spend {verb} from {_f(ledger, base_id)} in days {b[0]}-{b[1]} to "
+                          f"{_f(ledger, comp_id)} in days {c[0]}-{c[1]}, a move of {_fa(ledger, chg_id)} per day.")
+            if res["drivers"]:
+                top = res["drivers"][0]
+                share_id = lab[f"Share of {sub} gross change explained by the top deployment"]
+                answer.append(f"The top deployment, {top['name']}, accounts for {_f(ledger, share_id)} of the "
+                              f"gross change.")
+            for i, d in enumerate(res["drivers"]):
+                ch = lab[f"Change in daily avg spend from {d['name']} ({d['kind']})"]
+                vms = lab[f"Total VMs in {d['name']}"]
+                word = "adding" if d["change_usd_per_day"] >= 0 else "removing"
+                when = (f"launched on day {d['first_day']}" if d["kind"] == "launched"
+                        else f"last running on day {d['last_day']}" if d["kind"] == "shut down" else d["kind"])
+                drivers.append(f"{d['name']} ({when}; {_f(ledger, vms)} VMs, mostly {d['sku']}, {d['category']} workload): "
+                               f"{word} {_fa(ledger, ch)} per day.")
+            for m in res.get("possible_migrations", [])[:2]:
+                drivers.append(f"Possible migration: spend moved from {m['from']} to {m['to']} "
+                               f"(a flag for the owner to confirm).")
+            if res["drivers"]:
+                actions.append(f"Confirm with the owner of {sub} that {res['drivers'][0]['name']} is expected, "
+                               f"and tag it for showback.")
         elif t == "compute" and ids:
             answer.append(f"{ledger.facts[ids[0]].label}: {_f(ledger, ids[0])}.")
     parts = ["**Answer:** " + " ".join(answer or ["No tool returned results for this question."])]
@@ -238,6 +285,22 @@ class CostAnalystAgent:
                 trace.append({**st, "ok": False, "error": str(exc)})
         return errors
 
+    @staticmethod
+    def _root_cause_followups(results: list) -> list[dict]:
+        """After anomaly detection, explain the largest subscription event by deployment --
+        an alert is only actionable once it names what changed and who owns it."""
+        from cca.rootcause import event_windows
+        for step, res in results:
+            if step["tool"] != "detect_anomalies":
+                continue
+            for e in res.get("top_events", []):
+                w = event_windows(e["start_day"])
+                if e["series"].startswith("SUB-") and w:
+                    return [{"tool": "explain_change", "args": {"subscription": e["series"], "base_start": w[0],
+                                                                 "base_end": w[1], "comp_start": w[2],
+                                                                 "comp_end": w[3], "top_n": 3}}]
+        return []
+
     def answer(self, question: str) -> AgentResult:
         import duckdb
 
@@ -257,6 +320,9 @@ class CostAnalystAgent:
             if not steps:
                 steps = rule_plan(question)
             errors = self._execute(con, ledger, steps, trace, results)
+            follow = self._root_cause_followups(results)
+            if follow:
+                self._execute(con, ledger, follow, trace, results)
             if self.llm:
                 try:
                     raw = self.llm.generate(_prompt("planner", tool_specs=TOOL_SPECS), _prompt(

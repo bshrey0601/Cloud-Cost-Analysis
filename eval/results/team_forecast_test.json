@@ -1,0 +1,111 @@
+{
+  "teams": [
+    "SUB-0002",
+    "SUB-0004",
+    "SUB-0006",
+    "SUB-0008",
+    "SUB-0010",
+    "SUB-0012",
+    "SUB-0014",
+    "SUB-0016",
+    "SUB-0018",
+    "SUB-0020",
+    "SUB-0022",
+    "SUB-0024",
+    "SUB-0026",
+    "SUB-0028",
+    "SUB-0030",
+    "SUB-0032",
+    "SUB-0034",
+    "SUB-0036",
+    "SUB-0038",
+    "SUB-0040",
+    "SUB-0042",
+    "SUB-0044",
+    "SUB-0046",
+    "SUB-0048",
+    "SUB-0050"
+  ],
+  "test_error_pct": {
+    "next_day": {
+      "Holt-Winters (statsmodels)": 1.6055,
+      "Naive (last value)": 1.5514,
+      "Seasonal naive (same hour yesterday)": 1.803,
+      "v1 blend (no step awareness)": 1.5292,
+      "v2 step-aware (threshold 15%)": 1.7797
+    },
+    "next_week": {
+      "Holt-Winters (statsmodels)": 2.5137,
+      "Naive (last value)": 2.4717,
+      "Seasonal naive (same hour yesterday)": 2.1899,
+      "v1 blend (no step awareness)": 4.4742,
+      "v2 step-aware (threshold 15%)": 3.5459
+    }
+  },
+  "regression_check_pct": {
+    "Total": {
+      "next_day": {
+        "Holt-Winters (statsmodels)": 1.0434,
+        "Naive (last value)": 1.2699,
+        "Seasonal naive (same hour yesterday)": 1.0924,
+        "v1 blend (no step awareness)": 0.8693,
+        "v2 step-aware (threshold 15%)": 0.8397
+      },
+      "next_week": {
+        "Holt-Winters (statsmodels)": 2.0576,
+        "Naive (last value)": 2.1422,
+        "Seasonal naive (same hour yesterday)": 1.5128,
+        "v1 blend (no step awareness)": 0.911,
+        "v2 step-aware (threshold 15%)": 0.9028
+      }
+    },
+    "Delay-insensitive": {
+      "next_day": {
+        "Holt-Winters (statsmodels)": 0.1553,
+        "Naive (last value)": 0.1824,
+        "Seasonal naive (same hour yesterday)": 0.4151,
+        "v1 blend (no step awareness)": 0.2527,
+        "v2 step-aware (threshold 15%)": 0.2522
+      },
+      "next_week": {
+        "Holt-Winters (statsmodels)": 0.6303,
+        "Naive (last value)": 0.6576,
+        "Seasonal naive (same hour yesterday)": 0.6753,
+        "v1 blend (no step awareness)": 0.724,
+        "v2 step-aware (threshold 15%)": 0.6697
+      }
+    },
+    "Interactive": {
+      "next_day": {
+        "Holt-Winters (statsmodels)": 0.1148,
+        "Naive (last value)": 0.1578,
+        "Seasonal naive (same hour yesterday)": 0.3133,
+        "v1 blend (no step awareness)": 0.1093,
+        "v2 step-aware (threshold 15%)": 0.1343
+      },
+      "next_week": {
+        "Holt-Winters (statsmodels)": 0.6982,
+        "Naive (last value)": 0.664,
+        "Seasonal naive (same hour yesterday)": 0.6278,
+        "v1 blend (no step awareness)": 0.5863,
+        "v2 step-aware (threshold 15%)": 0.6634
+      }
+    },
+    "Unknown": {
+      "next_day": {
+        "Holt-Winters (statsmodels)": 9.9979,
+        "Naive (last value)": 11.9997,
+        "Seasonal naive (same hour yesterday)": 11.6551,
+        "v1 blend (no step awareness)": 10.5749,
+        "v2 step-aware (threshold 15%)": 10.385
+      },
+      "next_week": {
+        "Holt-Winters (statsmodels)": 21.4967,
+        "Naive (last value)": 20.745,
+        "Seasonal naive (same hour yesterday)": 17.3212,
+        "v1 blend (no step awareness)": 8.1585,
+        "v2 step-aware (threshold 15%)": 10.251
+      }
+    }
+  }
+}

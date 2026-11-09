@@ -32,6 +32,7 @@ LITE_TABLES = [
     "mart_hourly_total", "mart_hourly_category", "mart_hourly_top_subscription",
     "mart_daily_subscription", "mart_daily_category", "mart_daily_shape", "mart_daily_driver",
     "mart_vm_utilization",
+    "dim_deployment", "mart_daily_deployment",
 ]
 SQL_DIR = ROOT / "sql"
 
@@ -102,6 +103,14 @@ def reconcile(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
             "SELECT SUM(cost_usd) FROM fct_hourly_cost",
             "SELECT SUM(total_spend_usd) FROM dim_subscription",
         ),
+        "Spend: hourly fact vs daily deployment mart": (
+            "SELECT SUM(cost_usd) FROM fct_hourly_cost",
+            "SELECT SUM(cost_usd) FROM mart_daily_deployment",
+        ),
+        "Spend: hourly fact vs deployment dimension": (
+            "SELECT SUM(cost_usd) FROM fct_hourly_cost",
+            "SELECT SUM(total_spend_usd) FROM dim_deployment",
+        ),
         "Unpriced shapes (must be 0)": (
             "SELECT 0",
             "SELECT COUNT(*) FROM stg_vm WHERE shape_id NOT IN (SELECT shape_id FROM dim_vm_shape)",
@@ -134,7 +143,7 @@ def build(download: bool = True) -> Path:
     run_sql_file(con, SQL_DIR / "01_staging.sql")
     shapes = pd.DataFrame(pricing.shape_rows())
     con.execute("CREATE OR REPLACE TABLE dim_vm_shape AS SELECT * FROM shapes")
-    for name in ["02_dimensions.sql", "03_fact_hourly_cost.sql", "04_marts.sql"]:
+    for name in ["02_dimensions.sql", "03_fact_hourly_cost.sql", "04_marts.sql", "05_deployments.sql"]:
         run_sql_file(con, SQL_DIR / name)
 
     report = reconcile(con)
@@ -150,7 +159,8 @@ def export_marts(con: duckdb.DuckDBPyConnection) -> None:
     """Write the reporting marts as compressed Parquet so the app runs from a plain git clone."""
     MARTS_DIR.mkdir(parents=True, exist_ok=True)
     for t in LITE_TABLES:
-        cols = "* EXCLUDE (vm_id)" if t == "mart_vm_utilization" else "*"   # 88-char hashes not needed
+        cols = {"mart_vm_utilization": "* EXCLUDE (vm_id)",            # 88-char hashes not needed
+                "dim_deployment": "* EXCLUDE (deployment_id)"}.get(t, "*")
         con.execute(f"COPY (SELECT {cols} FROM {t}) TO '{MARTS_DIR / (t + '.parquet')}' "
                     f"(FORMAT parquet, COMPRESSION zstd)")
     print(f"  exported {len(LITE_TABLES)} marts to {MARTS_DIR}")

@@ -4,7 +4,8 @@ the fact ledger and re-run each fact from the source system. Any mismatch fails 
 
 HARD RULES
 1. Every number you write (dollars, percentages, counts, durations) must come from the fact
-   ledger and be followed in the SAME sentence by its citation, e.g. "$705.6K [F2]".
+   ledger and be followed IMMEDIATELY by its own citation, e.g. "$705.6K [F2]". Never put one
+   citation after several numbers.
 2. Never calculate a new number yourself. If it is not in the ledger, do not state it.
 3. Round only by dropping digits (e.g. $705,583 -> $705.6K or $0.71M). Keep the sign meaning:
    use words like "increased"/"decreased" that match the sign of change facts.
