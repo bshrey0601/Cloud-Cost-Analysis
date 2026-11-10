@@ -1,5 +1,6 @@
 # Cloud Cost Analyst — a self-checking AI analyst for cloud spend
 
+[![Open the live app](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cloud-cost-analysis-asrlr3y69dxzjzdfvifvhn.streamlit.app/)
 [![tests](https://github.com/bshrey0601/Cloud-Cost-Analysis/actions/workflows/tests.yml/badge.svg)](https://github.com/bshrey0601/Cloud-Cost-Analysis/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/python-3.12%20%7C%203.13-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -7,6 +8,12 @@
 An end-to-end FinOps BI application built on **Microsoft's official Azure Public Dataset**:
 30 days of Microsoft's *own* internal (first-party) Azure VM usage — 2,695,548 VMs across
 6,687 internal subscriptions — priced at Azure's published list prices.
+
+### ▶ [Try the live app](https://cloud-cost-analysis-asrlr3y69dxzjzdfvifvhn.streamlit.app/)
+
+No install needed: explore the dashboards, open the root cause of any anomaly, download the
+audited QBR deck, and ask the AI analyst questions. If the app has been idle, Streamlit wakes it
+up first (about a minute); after that, the first page takes ~30 seconds to load.
 
 It answers the questions a Product Finance team asks about engineering cloud spend
 (*why did spend move? what will it be next week? what's anomalous? where can we save?*)
@@ -387,6 +394,9 @@ pytest -q
 ```
 
 ## Deploy (Streamlit Community Cloud, free)
+
+The live app is at **https://cloud-cost-analysis-asrlr3y69dxzjzdfvifvhn.streamlit.app/** and redeploys automatically on every push to `main`.
+To deploy your own copy:
 
 1. Go to https://share.streamlit.io and sign in with GitHub.
 2. **Create app → Deploy a public app from GitHub**: repository `bshrey0601/Cloud-Cost-Analysis`,
